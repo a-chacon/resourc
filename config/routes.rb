@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   get 'sessions/sign_out', to: 'sessions#destroy'
   # resources :sessions, only: %w[new create]
   resources :links
+
+  get 'terms', to: 'application#terms'
+  get 'privacy', to: 'application#privacy'
 end
