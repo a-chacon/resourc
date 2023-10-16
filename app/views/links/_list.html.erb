@@ -1,0 +1,22 @@
+<div class="flex flex-col pt-6">
+  <div class="md:w-3/5 mx-auto">
+    <% @records.each do |l| %>
+      <div class="md:p-4 mb-6">
+        <a href="<%= l.link %>" target="_blank">
+          <span class="text-sm text-slate-800/80"><%= l.link %></span>
+          <h3 class="font-semibold text-xl py-1 hover:underline"><%= l.title %></h3>
+          <p class="line-clamp-4 md:line-clamp-3 text-sm md:text-md"><%= l.description %></p>
+        </a>
+        <% if !local_assigns[:hidde_user] %>
+          <a href="<%= user_url(l.user) %>" target="_blank" class="flex flex-row pt-2">
+            <img class="w-6 rounded-full" src="<%= url_for(l.user.avatar) %>" alt="User avatar">
+            <p class="text-center ml-2"><%= l.user.nickname %></p>
+          </a>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="mx-auto py-8 pb-12">
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
+</div>

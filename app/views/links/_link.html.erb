@@ -1,0 +1,7 @@
+<div id="<%= dom_id link %>">
+  <% if action_name != "show" %>
+    <%= link_to "Show this link", link, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this link', edit_link_path(link), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
