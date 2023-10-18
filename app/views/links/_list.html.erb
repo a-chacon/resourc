@@ -1,18 +1,50 @@
 <div class="flex flex-col pt-6">
   <div class="md:w-3/5 mx-auto">
     <% @records.each do |l| %>
-      <div class="md:p-4 mb-6">
+      <div class="md:p-4 mb-6 bg-slate-100 dark:bg-neutral-900 dark:border-green-500 p-2 rounded-lg border">
         <a href="<%= l.link %>" target="_blank">
-          <span class="text-sm text-slate-800/80"><%= l.link %></span>
+          <span class="text-sm text-slate-800/80 dark:text-slate-400"><%= l.link %></span>
           <h3 class="font-semibold text-xl py-1 hover:underline"><%= l.title %></h3>
           <p class="line-clamp-4 md:line-clamp-3 text-sm md:text-md"><%= l.description %></p>
         </a>
-        <% if !local_assigns[:hidde_user] %>
+
+        <div class="flex justify-between md:flex-row flex-col-reverse my-2">
           <a href="<%= user_url(l.user) %>" target="_blank" class="flex flex-row pt-2">
-            <img class="w-6 rounded-full" src="<%= url_for(l.user.avatar) %>" alt="User avatar">
+            <img class="w-6 h-6 rounded-full" src="<%= url_for(l.user.avatar) %>" alt="User avatar">
             <p class="text-center ml-2"><%= l.user.nickname %></p>
           </a>
-        <% end %>
+          <div class="grid grid-cols-6">
+            <div class="flex items-center flex-col-reverse w-11">
+              <span role="img" aria-label="Like">👍</span>
+              <p class="text-xs"><%= l.reaction_like %></p>
+            </div>
+
+            <div class="flex items-center flex-col-reverse">
+              <span role="img" aria-label="Love">❤️</span>
+              <p class="text-xs"><%= l.reaction_love %></p>
+            </div>
+
+            <div class="flex items-center flex-col-reverse">
+              <span role="img" aria-label="Haha">😄</span>
+              <p class="text-xs"><%= l.reaction_haha %></p>
+            </div>
+
+            <div class="flex items-center flex-col-reverse">
+              <span role="img" aria-label="Wow">😲</span>
+              <p class="text-xs"><%= l.reaction_wow %></p>
+            </div>
+
+            <div class="flex items-center flex-col-reverse">
+              <span role="img" aria-label="Sad">😢</span>
+              <p class="text-xs"><%= l.reaction_sad %></p>
+            </div>
+
+            <div class="flex items-center flex-col-reverse">
+              <span role="img" aria-label="Angry">😡</span>
+              <p class="text-xs"><%= l.reaction_angry %></p>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

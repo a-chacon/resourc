@@ -3,6 +3,7 @@ class Link < ApplicationRecord
 
   validates :title, presence: true
   validates :link, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
+  validates :link, uniqueness: true
   after_create :send_to_discord
 
   def send_to_discord
