@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       @user = User.find_by(email: session_params[:email])
       if @user && @user.authenticate(session_params[:password])
         session[:user_id] = @user.id
-        redirect_to root_path, notice: 'Session iniciada correctamente.'
+        redirect_to root_path, notice: t('sessions.create.successfully')
       else
         redirect_to new_session_path, alert: 'Email/Password incorrecto'
       end
@@ -35,13 +35,13 @@ class SessionsController < ApplicationController
       # Sign in the user
       session[:user_id] = @user.id
 
-      redirect_to root_path, notice: "¡Sesión iniciada con #{user_info.provider}!"
+      redirect_to root_path, notice: "¡#{t('sessions.create.successfully_with')} #{user_info.provider}!"
     end
   end
 
   def destroy
     session.delete(:user_id)
     @current_user = nil
-    redirect_to root_url, alert: 'Cerraste session crrectamente.'
+    redirect_to root_url, alert: t('sessions.destroy.successfully')
   end
 end

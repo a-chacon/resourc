@@ -41,9 +41,9 @@
           <!-- User dropdown menu -->
           <div data-drop-down-menu-target="menu" id="user-dropdown" class="hidden absolute right-0 z-10 mt-2 py-2 w-56 origin-top-right rounded-md bg-white dark:bg-neutral-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div class="" role="none">
-              <a href="<%= edit_user_path(@current_user) %>" class="hover:bg-slate-100 dark:hover:bg-neutral-700 text-gray-700 dark:text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Mi cuenta</a>
-              <a href="<%= user_path(@current_user) %>" class="hover:bg-slate-100 dark:hover:bg-neutral-700 text-gray-700 dark:text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Mis perfil</a>
-              <%= link_to "Salir", "/sessions/sign_out", class:"hover:bg-red-100 dark:hover:bg-red-900 text-gray-700 dark:text-white block px-4 py-2 text-sm border-t", role: "menuitem", tabindex: "-1", id: "menu-item-2" %>
+              <a href="<%= edit_user_path(@current_user) %>" class="hover:bg-slate-100 dark:hover:bg-neutral-700 text-gray-700 dark:text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0"><%= t 'my_account' %></a>
+              <a href="<%= user_path(@current_user) %>" class="hover:bg-slate-100 dark:hover:bg-neutral-700 text-gray-700 dark:text-white block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-1"><%= t 'my_profile' %></a>
+              <%= link_to (t 'exit'), "/sessions/sign_out", class:"hover:bg-red-100 dark:hover:bg-red-900 text-gray-700 dark:text-white block px-4 py-2 text-sm border-t", role: "menuitem", tabindex: "-1", id: "menu-item-2" %>
             </div>
           </div>
         </div>

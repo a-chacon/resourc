@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     if @current_user.update(user_params)
-      redirect_back(fallback_location: root_path, notice: 'Datos actualizados')
+      redirect_back(fallback_location: root_path, notice: t('users.update.successfully'))
     else
       render :edit, status: :unprocessable_entity
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     session.delete(:user_id)
     @current_user.destroy
 
-    redirect_to root_path, alert: 'Usuario eliminado correctamente.'
+    redirect_to root_path, alert: t('users.delete.successfully')
   end
 
   private

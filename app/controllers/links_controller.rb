@@ -10,7 +10,7 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
-    redirect_to root_path, alert: 'Debes ingresar para poder agregar links.' if session[:user_id].nil?
+    redirect_to root_path, alert: t('links.new.unauthorized') if session[:user_id].nil?
 
     @link = Link.new
   end
@@ -22,7 +22,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to root_path, notice: 'Link was successfully created.' }
+        format.html { redirect_to root_path, notice: t('links.create.successfully') }
         format.json { render :show, status: :created, location: @link }
       else
         format.html { render :new, status: :unprocessable_entity }

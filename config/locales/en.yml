@@ -30,4 +30,49 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  title: "Share"
+  description: Share technical articles, tools, news, open source projects, free software and much more related to programming.
+  share: share
+  terms: Terms and conditions
+  privacy: Privacy policy
+  my_account: My Account
+  my_profile: My Profile
+  exit: Sign Out
+  sign_in: Sign In
+  cancel: Cancel
+  links: 
+    new:
+      title: Share
+      subtitle: This information will be public. Be responsible with what you share.
+      unauthorized: You must be logged in to add links
+    form:
+      link: Link
+      title: Title
+      description: Description
+      cancel: Cancel
+      save: Save
+    create:
+      successfully: Shared correctly
+  users:
+    edit:
+      title: Your Data
+    form:
+      name: Name
+      nickname: Nickname
+      save: Save
+    delete:
+      title: Remove your account
+      subtitle: All your data will be permanently deleted, including the links you have shared.
+      remove: Delete
+      popup_message: Are you sure you want to delete your account? This action cannot be reversed.
+      popup_cancel: Cancel
+      popup_remove: Yes, delete.
+      successfully: Your data was deleted
+    update:
+      successfully: Data updatd
+  sessions:
+    create:
+      successfully:
+      successfully_with: Session successfully started with
+    destroy:
+      successfully: Session closed correctly
