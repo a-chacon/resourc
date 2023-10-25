@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_17_164149) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_24_184804) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -47,12 +47,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_17_164149) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "reaction_like", default: 0
-    t.integer "reaction_love", default: 0
-    t.integer "reaction_haha", default: 0
-    t.integer "reaction_wow", default: 0
-    t.integer "reaction_sad", default: 0
-    t.integer "reaction_angry", default: 0
+    t.integer "reaction_dislike", default: 0
+    t.integer "kind", default: 0
     t.index ["user_id"], name: "index_links_on_user_id"
+  end
+
+  create_table "links_tags", force: :cascade do |t|
+    t.integer "link_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_links_tags_on_link_id"
+    t.index ["tag_id"], name: "index_links_tags_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

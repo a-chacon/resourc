@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
 
   before_action :assign_opengraph_data
   around_action :switch_locale
+  before_action :set_general_ranksak_object
+
+  def set_general_ranksak_object
+    @q = Link.ransack(params[:q])
+  end
 
   def switch_locale(&action)
     logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
@@ -30,5 +35,7 @@ class ApplicationController < ActionController::Base
 
   def extract_locale_from_accept_language_header
     request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+  rescue StandardError
+    'en'
   end
 end

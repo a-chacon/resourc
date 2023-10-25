@@ -5,7 +5,14 @@ class LinksController < ApplicationController
 
   # GET /links or /links.json
   def index
-    @pagy, @records = pagy(Link.order(id: :desc).includes(:user))
+    @popular_tags = Tag.select('tags.*, COUNT(links_tags.link_id) AS link_count')
+                       .joins(:links)
+                       .group('tags.id')
+                       .order('link_count DESC')
+                       .limit(20)
+
+    @q = Link.ransack(params[:q])
+    @pagy, @records = pagy(@q.result(distinct: true).order(id: :desc).includes(:user))
   end
 
   # GET /links/new

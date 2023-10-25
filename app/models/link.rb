@@ -1,10 +1,16 @@
 class Link < ApplicationRecord
   belongs_to :user
+  has_and_belongs_to_many :tags
 
   validates :title, presence: true
   validates :link, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
   validates :link, uniqueness: true
-  after_create :send_to_discord
+
+  enum :kind, %i[other blog_post microblog_post video podcast course sass tool torrent]
+
+  attr_accessor :skip_send_to_discord
+
+  after_create :send_to_discord, unless: :skip_send_to_discord
 
   def send_to_discord
     bot = Discordrb::Bot.new token: Rails.application.credentials.dig(:discord, :token)
@@ -48,5 +54,14 @@ Compartido por: #{user.nickname}
     bot.run
   rescue Exception => e
     Rails.logger.error e.to_s
+  end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[description id kind link reaction_dislike reaction_like title
+       user_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[tags user]
   end
 end

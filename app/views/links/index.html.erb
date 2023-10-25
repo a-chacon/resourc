@@ -1,11 +1,23 @@
-<div class="flex flex-col md:flex-row md:w-4/5 mx-auto text-center md:text-left pb-2 md:pb-6">
-  <div class="basis-2/3">
+<div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-6 gap-6 mx-auto pb-2 md:pb-6">
+  <div class="md:col-span-4 xl:col-start-2 xl:col-span-4 text-center md:text-left m-6">
     <h1 class="text-3xl md:text-4xl font-semibold pb-4"><%= title t 'title' %></h1>
     <h2 class="md:text-lg"><%= t 'description' %></h2>
+    <div class="flex flex-wrap gap-3 mx-auto p-6 place-content-center">
+    <% @popular_tags.each do |t| %>
+      <%= link_to t.name , root_path(q: { tags_name_eq: t.name }), class: "px-2 py-1 rounded-xl text-sm bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200" %>
+    <% end %>
+    </div>
   </div>
-  <div class="basis-1/3 flex justify-center items-center">
-    <a href="<%= new_link_path%>" class="text-white bg-gradient-to-r from-rose-600 to-purple-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 text-center rounded-lg px-5 py-2 w-full m-8 font-semibold hover:scale-110 transition ease-in-out delay-150 duration-300">+ <%= t 'share' %></a>
+  <div class="md:col-span-3 xl:col-span-4 xl:col-start-2 md:w-4/5 md:mx-auto">
+    <%= render "list" %>
+  </div>
+  <div class="md:col-span-1 xl:col-span-1 xl:col-start-6 flex justify-center items-center place-self-start sticky top-10">
+    <div class="flex flex-col bg-slate-200 dark:bg-neutral-900 gap-4 p-4 rounded-lg">
+    <h3 class="text-xl front-semibold">Comparte</h3>
+    <p class="text-sm"><%=  t "share_description" %></p>
+    <a href="<%= new_link_path%>" class="text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 w-full font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200">+ <%= t 'share' %></a>
+    </div>
   </div>
 </div>
 
-<%= render "list" %>
+

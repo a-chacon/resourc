@@ -92,3 +92,5 @@ gem 'aws-sdk-s3', require: false
 gem 'discordrb'
 
 gem 'imageomatic', '~> 0.1.4'
+
+gem 'ransack'

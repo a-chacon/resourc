@@ -15,6 +15,10 @@ class User < ApplicationRecord
     avatar.attach(io: downloaded_image, filename: 'image.jpg', content_type: 'image/jpeg')
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[created_at email id meta name nickname password_digest updated_at]
+  end
+
   private
 
   def complete
