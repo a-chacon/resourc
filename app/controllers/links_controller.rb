@@ -5,6 +5,9 @@ class LinksController < ApplicationController
 
   # GET /links or /links.json
   def index
+    @page_title = t('meta_title')
+    @page_description = t('meta_description')
+
     @popular_tags = Tag.select('tags.*, COUNT(links_tags.link_id) AS link_count')
                        .joins(:links)
                        .group('tags.id')

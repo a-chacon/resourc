@@ -1,44 +1,37 @@
-    <%= form_with model: @link, local: true do |form| %>
+<%= form_with model: @link, local: true, class: "flex flex-col gap-8" do |form| %>
 
-  <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-    <div class="sm:col-span-4">
-      <%= form.label :link,'*' + (t 'links.form.link'), class:"block text-sm font-medium leading-6 text-gray-900 dark:text-white" %>
-      <div class="mt-2">
-        <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-          <%= form.text_field :link, class:"block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" %>
-        </div>
-      </div>
+  <div>
+    <%= form.label :kind, (t 'links.form.kind'), class: "text-sm" %>
+    <%= form.select :kind, Link.kinds.map{|k,v| [t("activerecord.attributes.link.kind.#{k}"), v]},{},{ class: "bg-transparent border-0 border-b ring-0 focus:border-indigo-600 focus:ring-0 focus:animate-pulse w-full "} %>
+  </div>
+
+  <div>
+    <%= form.label :link,'*' + (t 'links.form.link'), class:"text-sm" %>
+    <%= form.text_field :link, class:"bg-transparent border-0 border-b ring-0 focus:border-indigo-600 focus:ring-0 focus:animate-pulse  w-full " %>
+    <div class="flex flex-wrap w-60">
       <% if @link.errors[:link].any? %>
         <p class="text-red-500 text-xs italic"> <%= @link.errors[:link].join(', ') %></p>
       <% end %>
     </div>
   </div>
-
-  <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-    <div class="sm:col-span-4">
-      <%= form.label :title,'*' + (t 'links.form.title'), class:"block text-sm font-medium leading-6 text-gray-900 dark:text-white" %>
-      <div class="mt-2">
-        <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-          <%= form.text_field :title, class:"block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" %>
-        </div>
-      </div>
-      <% if @link.errors[:title].any? %>
-        <p class="text-red-500 text-xs italic"> <%= @link.errors[:title].join(', ') %></p>
-      <% end %>
+  <div>
+    <%= form.label :title,'*' + (t 'links.form.title'), class:"text-sm" %>
+    <%= form.text_field :title, class:"bg-transparent border-0 border-b ring-0 focus:border-indigo-600 focus:ring-0 focus:animate-pulse w-full " %>
+    
+    <div class="flex flex-wrap w-60">
+    <% if @link.errors[:title].any? %>
+      <p class="text-red-500 text-xs italic"> <%= @link.errors[:title].join(', ') %></p>
+    <% end %>
     </div>
   </div>
+  <div>
+    <%= form.label :description,(t 'links.form.description'), class:"text-sm" %>
+    <%= form.text_area :description, class:"bg-transparent border-0 border-b ring-0 focus:border-indigo-600 focus:ring-0 focus:animate-pulse w-full " %>
 
-  <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-    <div class="sm:col-span-4">
-      <%= form.label :description,(t 'links.form.description'), class:"block text-sm font-medium leading-6 text-gray-900 dark:text-white" %>
-      <div class="mt-2">
-        <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-          <%= form.text_area :description, class:"block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 dark:text-white placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" %>
-        </div>
-      </div>
-      <% if @link.errors[:description].any? %>
-        <p class="text-red-500 text-xs italic"> <%= @link.errors[:descriptiono].join(', ') %></p>
-      <% end %>
+    <div class="flex flex-wrap w-60">
+    <% if @link.errors[:description].any? %>
+      <p class="text-red-500 text-xs italic"> <%= @link.errors[:descriptiono].join(', ') %></p>
+    <% end %>
     </div>
   </div>
 
