@@ -6,7 +6,7 @@
     <h2 class="md:text-lg"><%= t 'description' %></h2>
     <div id="search-results" class="flex flex-wrap gap-3 mx-auto p-2 md:p-6 place-content-center">
     <% @popular_tags.each do |t| %>
-      <%= link_to t.name , root_path(q: { tags_name_eq: t.name }), class: "px-2 py-1 rounded-xl text-sm bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200" %>
+      <%= link_to t.name , root_path(q: { tags_name_eq: t.name }),rel:'nofollow', class: "px-2 py-1 rounded-xl text-sm bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200" %>
     <% end %>
     </div>
   </div>
