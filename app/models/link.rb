@@ -6,7 +6,9 @@ class Link < ApplicationRecord
   validates :link, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
   validates :link, uniqueness: true
 
-  enum :kind, %i[other blog_post microblog_post video podcast course sass tool torrent]
+  enum :kind,
+       %w[blog_posts microblog_posts videos podcasts courses saas_tools tools torrents ebooks
+          documentation presentations templates online_tools forums_communities open_source_projects live_events conference_talks career_employment development_tools interactive_tutorials code_libraries]
 
   attr_accessor :skip_send_to_discord
 

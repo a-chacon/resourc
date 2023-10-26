@@ -32,6 +32,7 @@
 es:
   title: Explora y Crece
   description: ¿En busca de recursos para tu viaje en el mundo de la programación? Sumérgete en nuestro universo de artículos técnicos, herramientas, noticias, proyectos de código abierto y software libre. Encuentra inspiración, soluciones y una comunidad apasionada que comparte.
+  share_title: ¡Comparte!
   share_description: Comparte artículos técnicos, herramientas, noticias, proyectos de código abierto, software libre y mucho más relacionado con la programación. Si te sirvió a ti, le puede servir a los demás.
   share: compartir
   terms: Términos y condiciones
@@ -41,6 +42,7 @@ es:
   exit: Salir
   sign_in: Entrar
   cancel: Cancelar
+  filter_apply: Filtro aplicado
   links: 
     new:
       title: Comparte
@@ -77,3 +79,29 @@ es:
       successfully_with: Sesión iniciada correctamente con
     destroy:
       successfully: Sesión cerrada correctamente
+  activerecord:
+    attributes:
+      link:
+        kind:
+          blog_posts: "Blogs"
+          microblog_posts: "Microblogs"
+          videos: "Videos"
+          podcasts: "Podcasts"
+          courses: "Cursos"
+          saas_tools: "SaaS"
+          tools: "Herramientas"
+          torrents: "Torrents"
+          ebooks: "eBooks"
+          documentation: "Documentación"
+          presentations: "Presentaciones"
+          templates: "Plantillas"
+          online_tools: "Herramientas en Línea"
+          forums_communities: "Foros"
+          open_source_projects: "Proyectos Abiertos"
+          live_events: "Eventos en Vivo"
+          conference_talks: "Conferencias"
+          career_employment: "Carrera y Empleo"
+          development_tools: "Herramientas de Desarrollo"
+          interactive_tutorials: "Tutoriales Interactivos"
+          code_libraries: "Bibliotecas de Código"
+

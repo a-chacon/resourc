@@ -21,7 +21,11 @@ data['data'].each do |s|
   link.title = s['name']
   link.description = s['description']
   s['categories'].each { |c| link.tags << Tag.find_or_create_by(name: c) } if s['categories']
-  s['keywords'].each { |c| link.tags << Tag.find_or_create_by(name: c) } if s['keywords']
+  if s['keywords']
+    s['keywords'].each do |c|
+      link.tags << Tag.find_or_create_by(name: c) unless link.tags.pluck(:name).include? c
+    end
+  end
   link.user = bot
   link.skip_send_to_discord = true
   link.save!

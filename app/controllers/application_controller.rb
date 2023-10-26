@@ -22,9 +22,9 @@ class ApplicationController < ActionController::Base
   end
 
   def assign_opengraph_data
-    opengraph.title = '2048 Devs: Comparte, Aprende y Crea'
-    opengraph.description = 'Comparte tus hallazgos, aprende de otros y juntos creemos un ambiente de colaboración. Artículos, herramientas, proyectos de código abierto: ¡todo es bienvenido! '
-    opengraph.image = 'https://2048.fly.dev/2048.webp'
+    opengraph.title = "2048 Devs: #{t('title')}"
+    opengraph.description = t('description')
+    opengraph.image = 'https://2048.iamindexed.com/2048.webp'
   end
 
   def terms; end

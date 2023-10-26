@@ -30,8 +30,10 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  title: "Share"
-  description: Share technical articles, tools, news, open source projects, free software and much more related to programming.
+  title: Explore and Grow
+  description: Looking for resources for your programming journey? Dive into our universe of technical articles, tools, news, open source projects and free software. Find inspiration, solutions and a passionate community to share.
+  share_title: Share!
+  share_description: Share technical articles, tools, news, open source projects, free software and much more related to programming. If it helped you, it can help others.
   share: share
   terms: Terms and conditions
   privacy: Privacy policy
@@ -76,3 +78,28 @@ en:
       successfully_with: Session successfully started with
     destroy:
       successfully: Session closed correctly
+  activerecord:
+    attributes:
+      link:
+        kind:
+          blog_posts: "Blogs"
+          microblog_posts: "Microblogs"
+          videos: "Videos"
+          podcasts: "Podcasts"
+          courses: "Courses"
+          saas_tools: "SaaS"
+          tools: "Tools"
+          torrents: "Torrents"
+          ebooks: "eBooks"
+          documentation: "Docs"
+          presentations: "Presentations"
+          templates: "Templates"
+          online_tools: "Online Tools"
+          forums_communities: "Forums"
+          open_source_projects: "Open Source"
+          live_events: "Live Events"
+          conference_talks: "Conferences"
+          career_employment: "Career"
+          development_tools: "Dev Tools"
+          interactive_tutorials: "Tutorials"
+          code_libraries: "Code Libs"

@@ -12,7 +12,7 @@ class LinksController < ApplicationController
                        .limit(20)
 
     @q = Link.ransack(params[:q])
-    @pagy, @records = pagy(@q.result(distinct: true).order(id: :desc).includes(:user))
+    @pagy, @records = pagy(@q.result(distinct: true).order(id: :desc).includes(:user, :tags))
   end
 
   # GET /links/new
