@@ -7,8 +7,8 @@ class Link < ApplicationRecord
   validates :link, uniqueness: true
 
   enum :kind,
-       %w[blog_posts microblog_posts videos podcasts courses saas_tools tools torrents ebooks
-          documentation presentations templates online_tools forums_communities open_source_projects live_events conference_talks career_employment development_tools interactive_tutorials code_libraries]
+       %w[article video podcast course tool ebook documentation presentation template community event talk library
+          other]
 
   attr_accessor :skip_send_to_discord
 

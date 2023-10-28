@@ -96,3 +96,5 @@ gem 'imageomatic', '~> 0.1.4'
 gem 'ransack'
 
 gem 'sitemap_generator'
+
+gem 'opengraph_parser'

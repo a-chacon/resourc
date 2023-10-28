@@ -29,6 +29,11 @@ class LinksController < ApplicationController
   def create
     @link = Link.new(link_params)
     @link.user = @current_user
+    begin
+      @link.tags << params[:tags].uniq.map { |t| Tag.find_or_create_by(name: t.downcase) }
+    rescue StandardError
+      Rails.logger.debug 'Error adding tags'
+    end
 
     respond_to do |format|
       if @link.save
@@ -41,6 +46,14 @@ class LinksController < ApplicationController
     end
   end
 
+  def open_graph
+    og = OpenGraph.new(params[:url])
+    render json: {
+      title: og.title,
+      description: og.description
+    }
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -50,6 +63,6 @@ class LinksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def link_params
-    params.fetch(:link, {}).permit(:title, :description, :link)
+    params.fetch(:link, {}).permit(:title, :description, :link, :kind)
   end
 end

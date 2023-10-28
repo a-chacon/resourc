@@ -32,7 +32,7 @@
 en:
   meta_title: A collaborative list of resources for developers
   meta_description: Looking for resources for your programming journey? Dive into our universe of technical articles, tools, news, open source projects and free software. Find inspiration, solutions and a passionate community to share.
-  title: Explore and Grow
+  title: "2024 Devs: Share and Explore"
   description: Looking for resources for your programming journey? Dive into our universe of technical articles, tools, news, open source projects and free software. Find inspiration, solutions and a passionate community to share.
   share_title: Share!
   share_description: Share technical articles, tools, news, open source projects, free software and much more related to programming. If it helped you, it can help others.
@@ -85,24 +85,17 @@ en:
     attributes:
       link:
         kind:
-          blog_posts: "Blogs"
-          microblog_posts: "Microblogs"
-          videos: "Videos"
-          podcasts: "Podcasts"
-          courses: "Courses"
-          saas_tools: "SaaS"
-          tools: "Tools"
-          torrents: "Torrents"
-          ebooks: "eBooks"
+          article: "Articles"
+          video: "Videos"
+          podcast: "Podcasts"
+          course: "Courses"
+          tool: "Tools"
+          ebook: "eBooks"
           documentation: "Docs"
-          presentations: "Presentations"
-          templates: "Templates"
-          online_tools: "Online Tools"
-          forums_communities: "Forums"
-          open_source_projects: "Open Source"
-          live_events: "Live Events"
-          conference_talks: "Conferences"
-          career_employment: "Career"
-          development_tools: "Dev Tools"
-          interactive_tutorials: "Tutorials"
-          code_libraries: "Code Libs"
+          presentation: "Presentations"
+          template: "Templates"
+          community: "Communities"
+          event: "Events"
+          talk: "Talks"
+          library: "Libraries"
+          other: "Other"
