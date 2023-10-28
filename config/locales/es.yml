@@ -57,6 +57,7 @@ es:
       description: Descripción
       cancel: Cancelar
       save: Listo
+      tags: Etiquetas (3 max)
     create: 
       successfully: Compartido correctamente.
   users:

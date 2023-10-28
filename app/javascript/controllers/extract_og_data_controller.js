@@ -10,20 +10,28 @@ export default class extends Controller {
     ogUrl: String
   }
 
-  connect() {
-    console.log("conected to link")
+  connect() {}
+
+  isValidHttpUrl(string) {
+    try {
+      const newUrl = new URL(string);
+      return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';
+    } catch (err) {
+      return false;
+    }
   }
 
   async fetchOpenGraph() {
-    console.log("calling function")
-    const url = this.urlTarget.value
-    try {
-      const response = await fetch(`${this.ogUrlValue}?url=${url}`)
-      const data = await response.json()
-      this.titleTarget.value = data.title
-      this.descriptionTarget.value = data.description
-    } catch (error) {
-      console.error("Error fetching tag suggestions:", error)
+    if (this.isValidHttpUrl(this.urlTarget.value)) {
+      const url = this.urlTarget.value
+      try {
+        const response = await fetch(`${this.ogUrlValue}?url=${url}`)
+        const data = await response.json()
+        this.titleTarget.value = data.title
+        this.descriptionTarget.value = data.description
+      } catch (error) {
+        console.error("Error fetching tag suggestions:", error)
+      }
     }
   }
 }

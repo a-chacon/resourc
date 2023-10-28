@@ -21,7 +21,7 @@ export default class extends Controller {
     event.preventDefault()
     const tag = event.target.value.trim()
 
-    if (tag !== "") {
+    if (tag !== "" && this.tags.length < 3) {
       this.tags.push(tag)
       this.renderTags()
       this.tagInputTarget.value = "" // Clear the input field
@@ -39,8 +39,7 @@ export default class extends Controller {
       .map((tag, index) => `
         <span class="px-2 py-1 rounded-xl text-xs bg-gradient-to-r from-blue-600 to-purple-700 text-white hover:scale-110 transition ease-in-out delay-50 duration-200">
           <input type="hidden" class="form-control" placeholder="Search Box" name="tags[]" value="${tag}">
-          ${tag}
-          <button data-action="click->tag-input#removeTag" data-index="${index}" class="ml-2">X</button>
+          <button data-action="click->tag-input#removeTag" data-index="${index}" class="ml-2">${tag} X</button>
         </span>
       `)
       .join("")

@@ -1,7 +1,6 @@
-<div class="w-full">
+<div class="mx-auto w-full md:w-4/5 lg:3/5 xl:w-2/5 border rounded-lg p-8 bg-slate-100 dark:bg-slate-800 dark:border-indigo-400">
   <div class="">
-    <h1 class="font-semibold text-4xl"><%= t 'users.edit.title' %></h1>
-
+    <h1 class="font-semibold text-4xl pb-8"><%= t 'users.edit.title' %></h1>
     <%= render "form", user: @user %>
   </div>
   <hr class="my-4">
@@ -9,7 +8,7 @@
     <h1 class="font-semibold text-2xl"><%= t 'users.delete.title' %></h1>
     <p class="py-3"><%= t 'users.delete.subtitle' %></p>
 
-    <button data-action="modal#open" type="button" class="mt-4 rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500"><%= t 'users.delete.remove' %></button>
+    <button data-action="modal#open" type="button" class="rounded-md bg-gradient-to-r from-red-700 to-orange-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:scale-110 transition ease-in-out delay-50 duration-200 my-4"><%= t 'users.delete.remove' %></button>
 
     <div class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true" data-modal-target="wrapper" data-modal-target="dialog">
       <!--
