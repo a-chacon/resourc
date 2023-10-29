@@ -100,5 +100,6 @@ es:
           event: "Eventos"
           talk: "Charlas"
           library: "Bibliotecas"
+          tutorial: "Tutorial"
           other: "Otro"
 

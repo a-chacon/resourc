@@ -1,16 +1,22 @@
-<div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-6 gap-4 md:gap-6 mx-auto pb-2 md:pb-6">
-  <div class="md:col-span-4 xl:col-start-2 xl:col-span-4 text-center md:text-left ">
-    <h1 class="animate-charcter shine text-3xl md:text-4xl font-semibold pb-4">
+<div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-6 md:mx-auto pb-2 md:pb-6">
+
+  <div class="col-span-1 md:col-span-4 xl:col-start-2 xl:col-span-4 text-center pb-10">
+    <h1 class="text-transparent bg-clip-text bg-gradient-to-br from-purple-600 to-indigo-600 text-3xl md:text-5xl font-semibold pb-4">
       <%= t 'title' %>
     </h1>
-    <h2 class="md:text-lg"><%= t 'description' %></h2>
-    <div id="search-results" class="flex flex-wrap gap-3 mx-auto p-2 md:p-6 place-content-center">
+    <h2 class="md:text-lg font-semibold"><%= t 'description' %></h2>
+  </div>
+
+  <div id="search-results" class="col-span-1 md:col-span-4 lg:col-span-1 xl:col-start-1 md:place-self-start lg:border dark:border-slate-500 bg-slate-100 dark:bg-transparent rounded-lg pb-8">
+    <h2 class="text-xl p-3 text-center font-semibold">Popular Tags</h2>
+    <div class="flex flex-wrap gap-3 m-3 place-content-center">
     <% @popular_tags.each do |t| %>
       <%= link_to t.name , root_path(q: { tags_name_eq: t.name }),rel:'nofollow', class: "px-2 py-1 rounded-xl text-sm bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200" %>
     <% end %>
     </div>
   </div>
-  <div  class="md:hidden mb-10">
+
+  <div class="col-span-1 md:hidden mb-10">
      <div class="relative mx-auto max-w-screen-sm ">
       <%= search_form_for @q do |f| %>
         <%= f.search_field :title_or_description_or_link_or_tags_name_cont, class: "w-full bg-transparent h-10 px-5 pr-16 text-sm border-b-1 border-t-0 border-x-0 focus:border-indigo-600 focus:ring-0" %>
@@ -26,20 +32,23 @@
         <% end %>
       </div>
   </div>
-  <div class="md:col-span-3 xl:col-span-4 xl:col-start-2 md:w-4/5 md:mx-auto relative">
+
+  <div class="col-span-1 md:col-span-4 lg:col-span-3 xl:col-span-4 xl:col-start-2 md:w-4/5 md:mx-auto relative">
     <% filters = @q.base.conditions.map{|a| a.values}.flatten.map{|a| a.value} %>
     <% unless filters.empty? %>
       <h3  class="absolute -top-8 md:-top-10 left-0 md:text-lg font-semibold"><%= link_to '❌', root_url, class:'p-1 text-sm'%>Filter by <span class="text-transparent bg-clip-text bg-gradient-to-br from-pink-300 to-red-700"><%= filters[0] %></span></h3>
     <% end %>
     <%= render "list" %>
   </div>
-  <div class="md:col-span-1 xl:col-span-1 xl:col-start-6 flex justify-center items-center place-self-start sticky top-10">
-    <div class="flex flex-col bg-slate-200 dark:bg-slate-700 gap-4 p-4 rounded-lg">
-      <h3 class="text-xl front-semibold"><%= t 'share_title' %></h3>
-    <p class="text-sm"><%=  t "share_description" %></p>
-    <a href="<%= new_link_path%>" class="text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 w-full font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200">+ <%= t 'share' %></a>
+
+  <div class="col-span-1 md:col-span-4 lg:col-span-2 lg:col-start-2 xl:col-span-1 xl:col-start-6 flex justify-center items-center place-self-start sticky top-10">
+    <div class="flex flex-col gap-4 p-4 border dark:border-slate-500 bg-slate-100 dark:bg-transparent rounded-lg">
+      <h2 class="text-xl font-semibold"><%= t 'share_title' %></h2>
+      <p class=""><%=  t "share_description" %></p>
+      <a href="<%= new_link_path%>" class="text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 w-full font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200">+ <%= t 'share' %></a>
     </div>
   </div>
+
 </div>
 
 
