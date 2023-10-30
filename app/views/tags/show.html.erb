@@ -1,19 +1,15 @@
 <div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-6 md:mx-auto pb-2 md:pb-6">
-
   <div class="col-span-1 md:col-span-4 xl:col-start-2 xl:col-span-4 text-center pb-10">
-    <h1 class="text-transparent bg-clip-text bg-gradient-to-br from-purple-600 to-indigo-400 text-3xl md:text-5xl font-semibold pb-4">
-      <%= t 'title' %>
+    <h1 class="text-transparent bg-clip-text bg-gradient-to-br from-purple-600 to-indigo-600 text-3xl md:text-4xl font-semibold pb-4">
+      <%= t("tags.show.title", total:@pagy.count, tag: @tag.name ) %> 
     </h1>
-    <h2 class="md:text-lg font-semibold"><%= t 'description' %></h2>
   </div>
 
   <%= render "application/popular_tags"%>
 
   <div class="col-span-1 md:col-span-4 lg:col-span-3 xl:col-span-4 xl:col-start-2 md:w-4/5 md:mx-auto relative">
-    <%= render "list" %>
+    <%= render "links/list" %>
   </div>
 
   <%= render "application/share"%>
 </div>
-
-

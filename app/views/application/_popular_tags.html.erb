@@ -1,0 +1,8 @@
+<div id="search-results" class="col-span-1 md:col-span-4 lg:col-span-1 xl:col-start-1 md:place-self-start lg:border dark:border-slate-500 bg-slate-100 dark:bg-transparent rounded-lg pb-8">
+  <h2 class="text-xl p-3 text-center font-semibold">Popular Tags</h2>
+  <div class="flex flex-wrap gap-3 m-3 place-content-center">
+    <% @popular_tags.each do |t| %>
+      <%= link_to t.name , tag_path(t),rel:'nofollow', class: "px-2 py-1 rounded-xl text-sm bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200" %>
+    <% end %>
+  </div>
+</div>

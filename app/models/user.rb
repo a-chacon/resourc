@@ -1,6 +1,8 @@
 class User < ApplicationRecord
-  has_one_attached :avatar
+  extend FriendlyId
+  friendly_id :nickname, use: %i[slugged finders]
 
+  has_one_attached :avatar
   has_many :links, dependent: :destroy
 
   validates :email, uniqueness: true

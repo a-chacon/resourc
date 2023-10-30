@@ -83,6 +83,9 @@ es:
       successfully_with: Sesión iniciada correctamente con
     destroy:
       successfully: Sesión cerrada correctamente
+  tags:
+    show:
+      title: "Mejores %{total} Recursos %{tag} Para Desarrolladores"
   activerecord:
     attributes:
       link:
@@ -101,5 +104,6 @@ es:
           talk: "Charlas"
           library: "Bibliotecas"
           tutorial: "Tutorial"
+          newsletter: "Newsletter"
           other: "Otro"
 

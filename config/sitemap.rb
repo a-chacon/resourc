@@ -24,4 +24,11 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+  Tag.select('tags.*, COUNT(links_tags.link_id) AS link_count')
+     .joins(:links)
+     .group('tags.id')
+     .order('link_count DESC')
+     .limit(500).each do |tag|
+    add "/tags/#{tag.slug}"
+  end
 end

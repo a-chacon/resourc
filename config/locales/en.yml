@@ -82,6 +82,9 @@ en:
       successfully_with: Session successfully started with
     destroy:
       successfully: Session closed correctly
+  tags:
+    show:
+      title: "Top %{total} %{tag} Resources For Developers"
   activerecord:
     attributes:
       link:
@@ -100,4 +103,5 @@ en:
           talk: "Talks"
           library: "Libraries"
           tutorial: "Tutorial"
+          newsletter: "Newsletter"
           other: "Other"

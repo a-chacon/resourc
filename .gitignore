@@ -38,3 +38,5 @@
 !/app/assets/builds/.keep
 
 /config/credentials/development.key
+
+resources*.json

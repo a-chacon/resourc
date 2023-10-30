@@ -98,3 +98,7 @@ gem 'ransack'
 gem 'sitemap_generator'
 
 gem 'opengraph_parser'
+
+gem 'friendly_id', '~> 5.4.0'
+
+gem 'ruby-openai'

@@ -8,7 +8,7 @@ class Link < ApplicationRecord
 
   enum :kind,
        %w[article video podcast course tool ebook documentation presentation template community event talk library
-          tutorial other]
+          tutorial newsletter other]
 
   attr_accessor :skip_send_to_discord
 
