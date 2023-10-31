@@ -4,7 +4,7 @@
   </div>
   <div class="my-auto flex flex-row-reverse items-center">
     <button data-controller="dark-mode" data-action="click->dark-mode#toggleDarkMode" class="hover:scale-110 transition ease-in-out delay-50 duration-200 px-4 py-2 rounded">
-      <svg id="sun-icon" data-dark-mode-target="sunIcon" class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg id="sun-icon" data-dark-mode-target="sunIcon" class="w-6 h-6 text-yellow-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <!-- SVG code for a sun icon (light mode) -->
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -14,7 +14,7 @@
           </g>
         </svg>
       </svg>
-      <svg id="moon-icon" data-dark-mode-target="moonIcon" class="w-6 h-6 text-yellow-500 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg id="moon-icon" data-dark-mode-target="moonIcon" class="w-6 h-6 text-yellow-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <!-- SVG code for a moon icon (dark mode) -->
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
