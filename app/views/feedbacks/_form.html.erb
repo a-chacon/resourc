@@ -1,0 +1,25 @@
+<%= form_with(model: feedback, class: "contents") do |form| %>
+  <% if feedback.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <ul>
+        <% feedback.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :email,t("feedback.form.email")  %>
+    <%= form.text_field :email, class:"dark:bg-slate-700 my-4 focus:border-indigo-600 focus:ring-0 rounded-lg w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :comment, t("feedback.form.comment") %>
+    <%= form.text_area :comment, rows: 4, class: "dark:bg-slate-700 my-4 focus:border-indigo-600 focus:ring-0 rounded-lg w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit t("feedback.form.submit_button"), class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

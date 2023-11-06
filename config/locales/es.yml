@@ -55,7 +55,22 @@ es:
   tags:
     show:
       title: "Mejores %{total} Recursos %{tag} Para Desarrolladores"
+  feedback:
+    new:
+        title: Gracias por tu comentario
+    form:
+      name: "Nombre"
+      email: "Correo electrónico (opcional)"
+      comment: "Comentario"
+      submit_button: "Enviar"
   activerecord:
+    errors:
+      models:
+        feedback:
+          attributes:
+            comment:
+              blank: "no puede estar en blanco"
+              invalid: "no es válido"
     attributes:
       link:
         kind:

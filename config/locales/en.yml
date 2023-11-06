@@ -54,7 +54,22 @@ en:
   tags:
     show:
       title: "Top %{total} %{tag} Resources For Developers"
+  feedback:
+    new:
+      title: Thank you for your feedback
+    form:
+      name: "Name"
+      email: "Email (Optional)"
+      comment: "Comment"
+      submit_button: "Submit"
   activerecord:
+    errors:
+      models:
+        feedback:
+          attributes:
+            comment:
+              blank: "can't be blank"
+              invalid: "is invalid"
     attributes:
       link:
         kind:

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :feedbacks
   scope '(:locale)', locale: /en|es/ do
     root 'links#index'
     get 'tag_suggestions', to: 'tags#suggestions'
