@@ -1,13 +1,13 @@
 <div class="grid grid-cols-1 md:grid-cols-4 xl:grid-cols-6 md:mx-auto pb-2 md:pb-6">
-  <div class="col-span-1 md:col-span-4 xl:col-start-2 xl:col-span-4 text-center pb-10">
-    <h1 class="text-transparent bg-clip-text bg-gradient-to-br from-purple-600 to-indigo-600 text-3xl md:text-4xl font-semibold pb-4">
+  <div class="col-span-1 md:col-span-4 xl:col-start-2 xl:col-span-4 text-center pb-10 border-b mb-10 border-slate-800">
+    <h1 class="text-slate-800 dark:text-slate-100 text-3xl md:text-5xl font-semibold pb-4">
       <%= t("tags.show.title", total:@pagy.count, tag: @tag.name ) %> 
     </h1>
   </div>
 
   <%= render "application/popular_tags"%>
 
-  <div class="col-span-1 md:col-span-4 lg:col-span-3 xl:col-span-4 xl:col-start-2 md:w-4/5 md:mx-auto relative">
+  <div class="col-span-1 md:col-span-4 lg:col-span-3 xl:col-span-4 xl:col-start-2 md:w-11/12 md:mx-auto relative">
     <%= render "links/list" %>
   </div>
 

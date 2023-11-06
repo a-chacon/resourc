@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def assign_opengraph_data
     opengraph.title = "Tech Resourc: #{t('title')}"
     opengraph.description = t('description')
-    opengraph.image = 'https://resourc.tech/2048.webp'
+    opengraph.image = 'https://resourc.tech/opengraph.png'
   end
 
   def terms; end
