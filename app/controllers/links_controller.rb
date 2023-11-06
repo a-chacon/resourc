@@ -27,22 +27,12 @@ class LinksController < ApplicationController
 
   # POST /links or /links.json
   def create
-    @link = Link.new(link_params)
-    @link.user = @current_user
-    begin
-      @link.tags << params[:tags].uniq.map { |t| Tag.find_or_create_by(name: t.downcase) }
-    rescue StandardError
-      Rails.logger.debug 'Error adding tags'
-    end
+    @link = LinkServices::Creation.new(link: link_params, tags: params[:tags], user: @current_user).run
 
-    respond_to do |format|
-      if @link.save
-        format.html { redirect_to root_path, notice: t('links.create.successfully') }
-        format.json { render :show, status: :created, location: @link }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
+    if !@link.errors.any?
+      redirect_to root_path, notice: t('links.create.successfully')
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
