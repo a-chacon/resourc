@@ -103,3 +103,7 @@ gem 'ruby-openai'
 gem 'mini_magick'
 
 gem 'sucker_punch', '~> 3.0'
+
+gem "sentry-ruby", "~> 5.12"
+
+gem "sentry-rails", "~> 5.12"

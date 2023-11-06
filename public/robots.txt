@@ -15,5 +15,5 @@ Disallow: /
 User-agent: *
 Disallow:
 
-Sitemap: https://2048.iamindexed.com/sitemap.xml.gz
+Sitemap: https://resourc.tech/sitemap.xml.gz
 

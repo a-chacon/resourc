@@ -1,6 +1,6 @@
-# 2048 Project
+# resourc Project
 
-**Project Description:** 2048 is a community-driven platform for sharing technical articles, tools, open-source projects, and everything related to programming. Connect with developers, share knowledge, and grow together.
+**Project Description:** resourc is a community-driven platform for sharing technical articles, tools, open-source projects, and everything related to programming. Connect with developers, share knowledge, and grow together.
 
 ## Table of Contents
 - [Getting Started](#getting-started)
@@ -28,13 +28,13 @@ This section provides an overview of your project and how to get it up and runni
 1. Clone this repository.
 
 ```
-git clone https://github.com/yourusername/2048.git
+git clone https://github.com/yourusername/resourc.git
 ```
 
 2. Change into the project directory.
 
 ```
-cd 2048
+cd resourc
 ```
 3. Install gem dependencies.
 

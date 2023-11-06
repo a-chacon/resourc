@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for 2048 on 2023-10-07T17:42:21+02:00
+# fly.toml app configuration file generated for resourc on 2023-11-06T08:53:14-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "2048"
+app = "resourc"
 primary_region = "gru"
 console_command = "/rails/bin/rails console"
 

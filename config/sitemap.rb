@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = 'https://2048.iamindexed.com'
+SitemapGenerator::Sitemap.default_host = 'https://resourc.tech'
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
@@ -28,7 +28,7 @@ SitemapGenerator::Sitemap.create do
      .joins(:links)
      .group('tags.id')
      .order('link_count DESC')
-     .limit(500).each do |tag|
+     .limit(100).each do |tag|
     add "/tags/#{tag.slug}"
   end
 end
