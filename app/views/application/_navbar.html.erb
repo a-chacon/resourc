@@ -27,7 +27,7 @@
     </button>
     <div class="text-sm no-underline text-grey-darkest hover:text-blue-dark ml-2">
       <% if session[:user_id].nil? %>
-        <%= render "login" %>
+        <button data-action="modal#open" type="button" class="rounded-md bg-slate-800 dark:bg-slate-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-500"><%= t 'sign_in' %></button>
       <% else %>
         <% @current_user = User.find(session[:user_id]) if @current_user.nil? %>
         <div class="relative group" data-controller="drop-down-menu">

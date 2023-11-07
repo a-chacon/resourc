@@ -8,10 +8,12 @@ export default class extends Controller {
   static targets = ["wrapper", "dialog"]
 
   open() {
+    event.preventDefault()
     this.wrapperTarget.classList.remove("hidden")
   }
 
   close() {
+    event.preventDefault()
     this.wrapperTarget.classList.add("hidden")
   }
 }
