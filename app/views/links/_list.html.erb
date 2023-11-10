@@ -2,17 +2,17 @@
   <% @records.each do |l| %>
     <div class="mb-8 bg-slate-100 dark:bg-slate-900 p-2 rounded-xl relative shadow shadow-indigo-500/50">
       <div class="flex sm:flex-row gap-2 flex-col">
-        
+
         <% if l.thumbnail.attached? %>
-          <div class="rounded-lg h-56 sm:w-3/4 relative overflow-hidden " data-controller="blurhash" data-blurhash-blurhash-value="<%= l.blurhash %>">
-              <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= url_for(l.thumbnail) if l.thumbnail.attached? %>" alt="Screenshot of the website <%= l.link %>">
+          <div class="rounded-lg h-56 sm:w-3/4 relative overflow-hidden " <% unless l.blurhash.blank? %>data-controller="blurhash"<% end %> data-blurhash-blurhash-value="<%= l.blurhash %>">
+            <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= url_for(l.thumbnail) if l.thumbnail.attached? %>" alt="Screenshot of the website <%= l.link %>">
           </div>
         <% end %>
 
         <div class="w-full m-2">
           <div class="flex flex-wrap gap-2 mb-2">
             <span class="px-2 py-1 rounded-xl text-xs font-semibold bg-gradient-to-r from-pink-400 to-amber-500 text-white hover:scale-110 transition ease-in-out delay-50 duration-200"><%= t("activerecord.attributes.link.kind.#{l.kind}")  %></span>
-            <% l.tags[0..2].each do |t| %> 
+            <% l.tags[0..2].each do |t| %>
               <span class="px-2 py-1 rounded-xl text-xs bg-gradient-to-r from-blue-600 to-purple-700 text-white hover:scale-110 transition ease-in-out delay-50 duration-200"><%= link_to t.name, tag_path(t) %></span>
             <% end %>
           </div>
@@ -27,19 +27,25 @@
 
           <div class="flex justify-between items-center flex-row my-2">
             <% if l.owner %>
-            <a href="<%= user_url(l.owner) %>" target="_blank" class="flex flex-row pt-2">
-              <img class="w-6 h-6 rounded-full" src="<%= url_for(l.owner.avatar) %>" alt="User avatar">
-              <p class="text-center ml-2"><%= l.owner.nickname %></p>
-            </a>
-          <% end %>
-            <div class="grid grid-cols-2">
-              <div class="flex items-center flex-col-reverse w-11">
-                <span role="img" aria-label="Like">👍</span>
-                <p class="text-xs"><%= l.reaction_like %></p>
-              </div>
-              <div class="flex items-center flex-col-reverse">
-                <span role="img" aria-label="Love">👎</span>
-                <p class="text-xs"><%= l.reaction_dislike %></p>
+              <a href="<%= user_url(l.owner) %>" target="_blank" class="flex flex-row pt-2">
+                <img class="w-6 h-6 rounded-full" src="<%= url_for(l.owner.avatar) %>" alt="User avatar">
+                <p class="text-center ml-2"><%= l.owner.nickname %></p>
+              </a>
+            <% end %>
+
+            <div <% unless session[:user_id].nil? %>data-controller="reactions" data-reactions-link-value="<%= l.id %>" class="flex flex-row" data-reactions-like-value="<%= @current_user_reactions.find{|r| r.relationship_type == "like" && r.link_id == l.id }.try(:id) %>" data-reactions-dislike-value="<%= @current_user_reactions.find{|r| r.relationship_type == "dislike" && r.link_id == l.id }.try(:id) %>" <% end %> >
+              <div class="flex flex-row">
+                <div  class="flex flex-row items-center gap-2">
+                  <p data-reactions-target="count" class="text-xs font-semibold"><%= l.reaction_like %></p>
+                  <button <% if session[:user_id].nil? %>data-action="modal#open"<% end %> data-action="reactions#voteUp" role="img" aria-label="Like" data-reactions-target="buttonUp" class="hover:scale-110 transition ease-in-out delay-50 duration-200">
+                    <svg fill="currentColor" class="w-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12s4.486 10 10 10zm0-15 5 5h-4v5h-2v-5H7l5-5z"></path></g></svg>
+                  </button>
+                </div>
+                <div  class="flex items-center flex-col-reverse w-11">
+                  <button <% if session[:user_id].nil? %>data-action="modal#open"<% end %> data-action="reactions#voteDown" role="img" aria-label="Dislike" data-reactions-target="buttonDown" class="hover:scale-110 transition ease-in-out delay-50 duration-200">
+                    <svg fill="currentColor" class="w-8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12s4.486 10 10 10zm0-15 5 5h-4v5h-2v-5H7l5-5z"></path></g></svg>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -51,4 +57,3 @@
     <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
   </div>
 </div>
-

@@ -1,7 +1,8 @@
 class LinksController < ApplicationController
   include AuthorizationConcern
 
-  before_action :authorize!, only: [:create]
+  before_action :authorize!, only: %i[create new]
+  before_action :authorize, only: [:index]
 
   # GET /links or /links.json
   def index
@@ -19,12 +20,15 @@ class LinksController < ApplicationController
 
     @pagy, @records = pagy(@q.result(distinct: true).with_attached_thumbnail.includes(:tags,
                                                                                       user_links: { user: { avatar_attachment: :blob } }))
+
+    return unless @current_user
+
+    @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
+                                                                                   dislike]).where(link_id: @records.pluck(:id))
   end
 
   # GET /links/new
   def new
-    redirect_to root_path, alert: t('links.new.unauthorized') if session[:user_id].nil?
-
     @link = Link.new
   end
 

@@ -14,4 +14,6 @@ export default class extends Controller {
       });
     }
   }
+
+  close(){}
 }
