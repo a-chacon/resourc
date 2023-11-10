@@ -88,7 +88,7 @@ gem 'aws-sdk-s3', require: false
 
 gem 'discordrb'
 
-gem 'imageomatic', '~> 0.1.4'
+gem 'imageomatic', '~> 0.1.4' # For manage OpenGraph
 
 gem 'ransack'
 
@@ -104,6 +104,8 @@ gem 'mini_magick'
 
 gem 'sucker_punch', '~> 3.0'
 
-gem "sentry-ruby", "~> 5.12"
+gem 'sentry-ruby', '~> 5.12'
 
-gem "sentry-rails", "~> 5.12"
+gem 'sentry-rails', '~> 5.12'
+
+gem 'blurhash'

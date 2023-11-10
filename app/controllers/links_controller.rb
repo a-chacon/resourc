@@ -12,10 +12,13 @@ class LinksController < ApplicationController
                        .joins(:links)
                        .group('tags.id')
                        .order('link_count DESC')
-                       .limit(20)
+                       .limit(15)
 
     @q = Link.ransack(params[:q])
-    @pagy, @records = pagy(@q.result(distinct: true).order(created_at: :desc).includes(:user, :tags))
+    @q.sorts = ['created_at desc', 'reaction_like desc'] if @q.sorts.empty?
+
+    @pagy, @records = pagy(@q.result(distinct: true).with_attached_thumbnail.includes(:tags,
+                                                                                      user: { avatar_attachment: :blob }))
   end
 
   # GET /links/new

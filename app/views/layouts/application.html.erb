@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html class="dark">
+<html lang="<%= I18n.locale %>" class="dark">
   <head>
     <%= display_meta_tags site: "Resourc" %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
     <%= opengraph_meta_tags %>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
     <script data-host="https://app.microanalytics.io" data-dnt="false" src="https://app.microanalytics.io/js/script.js" id="ZwSg9rf6GA" async defer></script>
   </head>

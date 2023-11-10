@@ -10,6 +10,7 @@ module LinkServices
     def run
       path = capture_screenshot
       image = resize_screenshot(path)
+      generate_blurhash(image)
       attach_thumbnail(image)
     rescue StandardError => e
       handle_error(e)
@@ -50,6 +51,12 @@ module LinkServices
 
     def attach_thumbnail(image_path)
       @link.thumbnail.attach(io: File.open(image_path), filename: 'screenshot.png', content_type: 'image/png')
+    end
+
+    def generate_blurhash(image_path)
+      image = MiniMagick::Image.open(image_path)
+
+      @link.update(blurhash: Blurhash.encode(image.width, image.height, image.get_pixels.flatten))
     end
 
     def reset_capybara

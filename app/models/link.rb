@@ -58,7 +58,7 @@ Compartido por: #{user.nickname}
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[description id kind link reaction_dislike reaction_like title
-       user_id]
+       user_id created_at]
   end
 
   def self.ransackable_associations(_auth_object = nil)

@@ -40,3 +40,5 @@
 /config/credentials/development.key
 
 resources*.json
+
+node_modules
