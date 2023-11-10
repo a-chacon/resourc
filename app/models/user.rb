@@ -3,7 +3,8 @@ class User < ApplicationRecord
   friendly_id :nickname, use: %i[slugged finders]
 
   has_one_attached :avatar
-  has_many :links, dependent: :destroy
+  has_many :user_links
+  has_many :links, through: :user_links
 
   validates :email, uniqueness: true
 

@@ -7,7 +7,7 @@ module LinkServices
     end
 
     def run
-      @link.user = @user
+      @link.users << @user
 
       @link.tags << @tags.uniq.map { |t| Tag.find_or_create_by(name: t.downcase) }
 

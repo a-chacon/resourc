@@ -1,5 +1,6 @@
 class Link < ApplicationRecord
-  belongs_to :user
+  has_many :user_links
+  has_many :users, through: :user_links
   has_and_belongs_to_many :tags
 
   has_one_attached :thumbnail
@@ -11,6 +12,10 @@ class Link < ApplicationRecord
   enum :kind,
        %w[article video podcast course tool ebook documentation presentation template community event talk library
           tutorial newsletter other]
+
+  def owner
+    user_links.find { |ul| ul.relationship_type == 'owner' }.try(:user)
+  end
 
   def send_to_discord
     bot = Discordrb::Bot.new token: Rails.application.credentials.dig(:discord, :token)

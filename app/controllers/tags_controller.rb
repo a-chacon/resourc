@@ -18,7 +18,8 @@ class TagsController < ApplicationController
     @q = Link.ransack(params[:q].merge({ tags_name_eq: @tag.name }))
     @search_url = tag_path(@tag)
 
-    @pagy, @records = pagy(@q.result(distinct: true).order(id: :desc).includes(:user, :tags))
+    @pagy, @records = pagy(@q.result(distinct: true).with_attached_thumbnail.includes(:tags,
+                                                                                      user_links: { user: { avatar_attachment: :blob } }))
 
     @page_title = t('tags.show.title', total: @pagy.count, tag: @tag.name)
     @page_description = t('meta_description')

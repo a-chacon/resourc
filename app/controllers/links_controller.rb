@@ -18,7 +18,7 @@ class LinksController < ApplicationController
     @q.sorts = ['created_at desc', 'reaction_like desc'] if @q.sorts.empty?
 
     @pagy, @records = pagy(@q.result(distinct: true).with_attached_thumbnail.includes(:tags,
-                                                                                      user: { avatar_attachment: :blob }))
+                                                                                      user_links: { user: { avatar_attachment: :blob } }))
   end
 
   # GET /links/new

@@ -26,10 +26,12 @@
           </div>
 
           <div class="flex justify-between items-center flex-row my-2">
-            <a href="<%= user_url(l.user) %>" target="_blank" class="flex flex-row pt-2">
-              <img class="w-6 h-6 rounded-full" src="<%= url_for(l.user.avatar) %>" alt="User avatar">
-              <p class="text-center ml-2"><%= l.user.nickname %></p>
+            <% if l.owner %>
+            <a href="<%= user_url(l.owner) %>" target="_blank" class="flex flex-row pt-2">
+              <img class="w-6 h-6 rounded-full" src="<%= url_for(l.owner.avatar) %>" alt="User avatar">
+              <p class="text-center ml-2"><%= l.owner.nickname %></p>
             </a>
+          <% end %>
             <div class="grid grid-cols-2">
               <div class="flex items-center flex-col-reverse w-11">
                 <span role="img" aria-label="Like">👍</span>
