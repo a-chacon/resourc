@@ -1,11 +1,12 @@
-
 <div class="flex flex-col">
   <% @records.each do |l| %>
-    <div class="mb-8 bg-slate-100 dark:bg-slate-900 p-2 rounded-xl relative">
+    <div class="mb-8 bg-slate-100 dark:bg-slate-900 p-2 rounded-xl relative shadow shadow-indigo-500/50">
       <div class="flex sm:flex-row gap-2 flex-col">
         
         <% if l.thumbnail.attached? %>
-          <img class="rounded-lg object-cover h-52 sm:h-50 mb-1" src="<%= url_for(l.thumbnail) if l.thumbnail.attached? %>" alt="Screenshot of the website <%= l.link %>">  
+          <div class="rounded-lg h-56 sm:w-3/4 relative overflow-hidden " data-controller="blurhash" data-blurhash-blurhash-value="<%= l.blurhash %>">
+              <img class="absolute top-0 left-0 w-full h-full object-cover" src="<%= url_for(l.thumbnail) if l.thumbnail.attached? %>" alt="Screenshot of the website <%= l.link %>">
+          </div>
         <% end %>
 
         <div class="w-full m-2">
