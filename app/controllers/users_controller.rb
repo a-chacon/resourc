@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   include AuthorizationConcern
 
   before_action :authorize!, except: %w[new create show]
+  before_action :authorize, only: [:show]
   before_action :set_user, only: ['show']
 
   # GET /users or /users.json
@@ -11,7 +12,13 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    @pagy, @records = pagy(@user.links.order(id: :desc))
+    @pagy, @records = pagy(Link.joins(:user_links).where(user_links: { user_id: User.find(params[:id]).id,
+                                                                       relationship_type: :owner }).order(id: :desc))
+
+    return unless @current_user
+
+    @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
+                                                                                   dislike]).where(link_id: @records.pluck(:id))
   end
 
   # GET /users/new

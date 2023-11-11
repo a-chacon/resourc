@@ -11,4 +11,9 @@ Ransack.configure do |config|
   # Default is false (sort order indicators are displayed).
   # This can also be configured individually in each sort link (see the README).
   # config.hide_sort_order_indicators = true
+  config.custom_arrows = {
+    up_arrow: '⬆️',
+    down_arrow: '⬇️',
+    default_arrow: '🔀'
+  }
 end

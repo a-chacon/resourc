@@ -2,7 +2,6 @@ class TagsController < ApplicationController
   include AuthorizationConcern
 
   before_action :set_user, only: ['show']
-
   before_action :authorize, only: [:show]
 
   def suggestions
@@ -19,7 +18,10 @@ class TagsController < ApplicationController
                        .limit(20)
 
     params[:q] = {} if params[:q].nil?
+
     @q = Link.ransack(params[:q].merge({ tags_name_eq: @tag.name }))
+    @q.sorts = ['created_at desc', 'reaction_like desc'] if @q.sorts.empty?
+
     @search_url = tag_path(@tag)
 
     @pagy, @records = pagy(@q.result(distinct: true).with_attached_thumbnail.includes(:tags,

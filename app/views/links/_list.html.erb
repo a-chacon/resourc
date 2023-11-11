@@ -1,4 +1,12 @@
 <div class="flex flex-col">
+
+  <% if @q %>
+    <div class="flex flex-row justify-end gap-2 m-2">
+      <%= sort_link(@q, :reaction_like, 'Voted', default_order: :desc) %>
+      <%= sort_link(@q, :created_at, 'Creado', default_order: :desc) %>
+    </div>
+  <% end %>
+
   <% @records.each do |l| %>
     <div class="mb-8 bg-slate-100 dark:bg-slate-900 p-2 rounded-xl relative shadow shadow-indigo-500/50">
       <div class="flex sm:flex-row gap-2 flex-col">
