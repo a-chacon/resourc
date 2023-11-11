@@ -1,4 +1,4 @@
-<div id="search-results" class="col-span-1 md:col-span-4 lg:col-span-1 h-min xl:col-start-1 bg-slate-100 dark:bg-slate-900 rounded-xl pb-8 mb-8 ">
+<div id="search-results" class="bg-slate-100 dark:bg-slate-900 rounded-xl pb-8 mb-8">
    <%= search_form_for @q, url: root_path, class: "relative mx-auto p-2" do |f| %>
     <%= f.search_field :title_or_description_or_link_or_tags_name_cont, class: "dark:bg-slate-700 w-full rounded-xl focus:border-indigo-600 focus:ring-0" %>
     <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">

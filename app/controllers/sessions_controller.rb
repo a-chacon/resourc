@@ -35,7 +35,11 @@ class SessionsController < ApplicationController
       # Sign in the user
       session[:user_id] = @user.id
 
-      redirect_to root_path, notice: "¡#{t('sessions.create.successfully_with')} #{user_info.provider}!"
+      redirect_params = session[:redirect_params] || {}
+      session[:redirect_params] = nil
+
+      redirect_to redirect_params.present? ? new_link_path(redirect_params) : root_path,
+                  notice: "¡#{t('sessions.create.successfully_with')} #{user_info.provider}!"
     end
   end
 

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'tag_suggestions', to: 'tags#suggestions'
     get 'open_graph', to: 'links#open_graph'
     resources :users, except: %w[create index]
+    resources :sessions, only: %w[new create]
     get 'auth/:provider/callback', to: 'sessions#create'
     get 'sessions/sign_out', to: 'sessions#destroy'
 

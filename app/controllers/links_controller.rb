@@ -30,6 +30,12 @@ class LinksController < ApplicationController
   # GET /links/new
   def new
     @link = Link.new
+    return unless params[:link]
+
+    @link.link = params[:link]
+    og = OpenGraph.new(params[:link])
+    @link.title = og.title
+    @link.description = og.description
   end
 
   # POST /links or /links.json

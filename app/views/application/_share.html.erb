@@ -1,7 +1,6 @@
-  <div class="col-span-1 md:col-span-4 lg:col-span-2 lg:col-start-2 xl:col-span-1 xl:col-start-6 flex justify-center items-center place-self-start sticky top-10 ">
-    <div class="flex flex-col gap-4 p-4 bg-slate-100 dark:bg-slate-900 rounded-xl">
-      <h2 class="text-xl font-semibold"><%= t 'share_title' %></h2>
-      <p class=""><%= t "share_description" %></p>
-      <a href="<%= new_link_path %>" <% if session[:user_id].nil? %>data-action="modal#open"<% end %> class="text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 w-full font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200">+ <%= t 'share' %></a>
-    </div>
-  </div>
+<div class="mx-auto lg:w-3/5 p-6">
+  <%= form_with url: new_link_path, method: :get, class:"flex flex-col sm:flex-row gap-2" do |form| %>
+    <%= form.text_field :link, placeholder: "https://resourc.tech", class:"dark:bg-slate-900 w-full rounded-xl focus:border-indigo-600 focus:ring-0" %>
+    <%= form.submit t("share_title") ,class:"text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200" %>
+  <% end %>
+</div>
