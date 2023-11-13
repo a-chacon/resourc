@@ -24,8 +24,8 @@ class TagsController < ApplicationController
 
     @search_url = tag_path(@tag)
 
-    @pagy, @records = pagy(@q.result(distinct: true).with_attached_thumbnail.includes(:tags,
-                                                                                      user_links: { user: { avatar_attachment: :blob } }))
+    @pagy, @records = pagy(@q.result(distinct: true).active.with_attached_thumbnail.includes(:tags,
+                                                                                             user_links: { user: { avatar_attachment: :blob } }))
 
     @page_title = t('tags.show.title', total: @pagy.count, tag: @tag.name)
     @page_description = t('meta_description')

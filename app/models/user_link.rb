@@ -16,6 +16,8 @@ class UserLink < ApplicationRecord
     when 'dislike'
       link.update(reaction_dislike: link.reaction_dislike + 1)
     end
+  rescue Exception => e
+    Rails.logger.error e.to_s
   end
 
   def substract_link_count
@@ -25,5 +27,7 @@ class UserLink < ApplicationRecord
     when 'dislike'
       link.update(reaction_dislike: link.reaction_dislike - 1)
     end
+  rescue Exception => e
+    Rails.logger.error e.to_s
   end
 end

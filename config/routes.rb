@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     resources :links, only: %i[index new create]
     resources :user_links, only: %i[create destroy]
 
-    get 'terms', to: 'application#terms'
-    get 'privacy', to: 'application#privacy'
+    get 'terms', to: 'pages#terms'
+    get 'privacy', to: 'pages#privacy'
+    get 'docs', to: 'pages#docs'
   end
 end

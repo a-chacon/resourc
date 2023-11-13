@@ -13,6 +13,9 @@ class Link < ApplicationRecord
        %w[article video podcast course tool ebook documentation presentation template community event talk library
           tutorial newsletter other]
 
+  enum :status,
+       %w[review active need_review enqueue_to_delete]
+
   def owner
     user_links.find { |ul| ul.relationship_type == 'owner' }.try(:user)
   end

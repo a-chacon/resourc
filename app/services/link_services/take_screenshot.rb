@@ -2,7 +2,7 @@ module LinkServices
   class TakeScreenshot
     include Capybara::DSL
 
-    def initialize(link)
+    def initialize(link: Link)
       @link = link
       configure_capybara
     end

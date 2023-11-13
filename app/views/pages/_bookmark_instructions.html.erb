@@ -1,0 +1,21 @@
+<article class="prose max-w-none dark:prose-invert">
+  <ul>
+    <li><p><%= t('bookmark_instructions.introduction') %></p></li>
+    <li><p><%= t('bookmark_instructions.add_page') %></p></li>
+    <li><p><%= t('bookmark_instructions.give_name') %></p></li>
+    <li><p><%= t('bookmark_instructions.paste_code') %></p></li>
+  </ul>
+
+  <pre><code>javascript: (function() {
+    var currentUrl = window.location.href;
+    var newUrl = 'https://resourc.tech/links/new?link=' + encodeURIComponent(currentUrl);
+    window.open(newUrl, '_blank');
+})();
+</code></pre>
+
+  <ul>
+    <li><p><%= t('bookmark_instructions.save_bookmark') %></p></li>
+    <li><p><%= t('bookmark_instructions.execute_code') %></p></li>
+  </ul>
+</article>
+

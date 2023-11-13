@@ -1,6 +1,9 @@
-<div class="mx-auto lg:w-3/5 p-6">
-  <%= form_with url: new_link_path, method: :get, class:"flex flex-col sm:flex-row gap-2" do |form| %>
-    <%= form.text_field :link, placeholder: "https://resourc.tech", class:"dark:bg-slate-900 w-full rounded-xl focus:border-indigo-600 focus:ring-0" %>
-    <%= form.submit t("share_title") ,class:"text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200" %>
+<div class="mx-auto lg:w-3/5 p-6" data-controller="validate-url">
+  <%= form_with url: new_link_path, method: :get, class:"flex flex-col sm:flex-row gap-2"  do |form| %>
+    <%= form.text_field :link, placeholder: "https://resourc.tech", class:"dark:bg-slate-900 w-full rounded-xl focus:border-indigo-600 focus:ring-0" , "data-validate-url-target": "urlInput" %>
+    <%= form.submit t("share_title") ,class:"text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200", "data-action": "validate-url#validateUrl" %>
   <% end %>
+    <div data-validate-url-target="warning" class="text-red-500 mt-2" style="display: none;">
+      <%= t("invalid_url") %> 
+    </div>
 </div>

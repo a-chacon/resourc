@@ -1,6 +1,7 @@
 <div data-controller="extract-og-data" data-extract-og-data-og-url-value="<%= open_graph_path %>">
   <%= form_with model: @link, local: true, class: "flex flex-col gap-8" do |form| %>
 
+    <!--
     <div>
       <%= form.label :kind, (t 'links.form.kind'), class: "text-sm" %>
       <%= form.select :kind, Link.kinds.map{|k,v| [t("activerecord.attributes.link.kind.#{k}"), k.to_s]},{},{ class: "bg-transparent border-0 border-b ring-0 focus:border-indigo-600 focus:ring-0 focus:animate-pulse w-full "} %>
@@ -14,10 +15,11 @@
       <div class="flex flex-wrap gap-2 pt-2" data-tag-input-target="tagList">
       </div>
     </div>
+    -->
 
     <div>
-      <%= form.label :link,'*' + (t 'links.form.link'), class:"text-sm" %>
-      <%= form.text_field :link, class:"bg-transparent border-0 border-b ring-0 focus:border-indigo-600 focus:ring-0 focus:animate-pulse  w-full ", "data-extract-og-data-target": "url", "data-action": "input->extract-og-data#fetchOpenGraph" %>
+      <%= form.label :link,(t 'links.form.link'), class:"font-semibold m-2" %>
+      <%= form.text_field :link, class:"dark:bg-slate-800 w-full rounded-xl focus:border-indigo-600 focus:ring-0", "data-extract-og-data-target": "url", "data-action": "input->extract-og-data#fetchOpenGraph" %>
       <div class="flex flex-wrap ">
         <% if @link.errors[:link].any? %>
           <p class="text-red-500 text-xs italic"> <%= @link.errors[:link].join(', ') %></p>
@@ -26,8 +28,8 @@
     </div>
 
     <div>
-      <%= form.label :title,'*' + (t 'links.form.title'), class:"text-sm" %>
-      <%= form.text_field :title, class:"bg-transparent border-0 border-b ring-0 focus:border-indigo-600 focus:ring-0 focus:animate-pulse w-full " , "data-extract-og-data-target": "title"%>
+      <%= form.label :title,(t 'links.form.title'), class:"font-semibold m-2" %>
+      <%= form.text_field :title, class:"dark:bg-slate-800 w-full rounded-xl focus:border-indigo-600 focus:ring-0" , "data-extract-og-data-target": "title"%>
 
       <div class="flex flex-wrap ">
         <% if @link.errors[:title].any? %>
@@ -37,8 +39,8 @@
     </div>
 
     <div>
-      <%= form.label :description,(t 'links.form.description'), class:"text-sm" %>
-      <%= form.text_area :description, class:"bg-transparent border-0 border-b ring-0 focus:border-indigo-600 focus:ring-0 focus:animate-pulse w-full " , "data-extract-og-data-target": "description"%>
+      <%= form.label :description,(t 'links.form.description'), class:"font-semibold m-2" %>
+      <%= form.text_area :description, class:"dark:bg-slate-800 w-full rounded-xl focus:border-indigo-600 focus:ring-0" , "data-extract-og-data-target": "description"%>
 
       <div class="flex flex-wrap ">
         <% if @link.errors[:description].any? %>
@@ -46,6 +48,10 @@
         <% end %>
       </div>
     </div>
+
+    <span class="font-semibold">
+      <%= t("links.form.last_text") %>
+    </span>
 
     <div class="mt-6 flex items-center justify-end gap-x-6">
       <a href="/" class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"><%= t 'links.form.cancel' %></a>

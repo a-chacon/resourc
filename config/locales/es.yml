@@ -8,12 +8,13 @@ es:
   share: compartir
   terms: Términos y condiciones
   privacy: Política de privacidad
+  docs: Documentación
   my_account: Mi Cuenta
   my_profile: Mi Perfil
   exit: Salir
   sign_in: Entrar
   cancel: Cancelar
-  filter_apply: Filtro aplicado
+  invalid_url: URL invalida. Por favor comparte una URL válida. 
   links: 
     new:
       title: Comparte
@@ -21,12 +22,11 @@ es:
       unauthorized: Debes ingresar para poder agregar links
     form:
       link: Url
-      kind: Tipo
       title: Título
       description: Descripción
       cancel: Cancelar
       save: Listo
-      tags: Etiquetas (3 max)
+      last_text: Desde aquí nos encargamos nosotros; el resto de los datos serán generados por inteligencia artificial. Tu recurso será publicado a la brevedad si todo está en orden.
     create: 
       successfully: Compartido correctamente.
   users:
@@ -90,4 +90,15 @@ es:
           tutorial: "Tutorial"
           newsletter: "Newsletter"
           other: "Otro"
+  bookmark_instructions:
+    title: "Compartir recursos fácilmente con un marcador"
+    introduction: "Haz clic derecho en tu barra de marcadores o menú de marcadores."
+    add_page: "Selecciona 'Agregar página' o 'Agregar a marcadores' en el menú contextual."
+    give_name: "Dale un nombre al marcador, como 'Mi Recurso Personalizado Compartido.'"
+    paste_code: "Pega el siguiente código JavaScript personalizado como la URL del marcador:"
+    code_snippet: "<pre><code>javascript:(function() {\n  // Código personalizado para compartir recursos fácilmente en Resourc\n  var resourceTitle = document.title;\n  var resourceURL = window.location.href;\n  window.open('https://tu-endpoint-de-compartir-recursos.com/compartir?title=' + encodeURIComponent(resourceTitle) + '&url=' + encodeURIComponent(resourceURL), '_blank');\n})();\n</code></pre>"
+    save_bookmark: "Haz clic en 'Guardar' o 'Agregar' para guardar el marcador."
+    execute_code: "Cuando encuentres un recurso interesante, haz clic en el marcador para compartirlo fácilmente en Resourc."
+
+
 

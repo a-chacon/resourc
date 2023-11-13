@@ -18,8 +18,8 @@ class LinksController < ApplicationController
     @q = Link.ransack(params[:q])
     @q.sorts = ['created_at desc', 'reaction_like desc'] if @q.sorts.empty?
 
-    @pagy, @records = pagy(@q.result(distinct: true).with_attached_thumbnail.includes(:tags,
-                                                                                      user_links: { user: { avatar_attachment: :blob } }))
+    @pagy, @records = pagy(@q.result(distinct: true).active.with_attached_thumbnail.includes(:tags,
+                                                                                             user_links: { user: { avatar_attachment: :blob } }))
 
     return unless @current_user
 
@@ -33,14 +33,12 @@ class LinksController < ApplicationController
     return unless params[:link]
 
     @link.link = params[:link]
-    og = OpenGraph.new(params[:link])
-    @link.title = og.title
-    @link.description = og.description
+    @link = LinkServices::CompleteWithOg.new(link: @link).run
   end
 
   # POST /links or /links.json
   def create
-    @link = LinkServices::Creation.new(link: link_params, tags: params[:tags], user: @current_user).run
+    @link = LinkServices::Creation.new(link: link_params, user: @current_user).run
 
     if !@link.errors.any?
       redirect_to root_path, notice: t('links.create.successfully')
@@ -50,11 +48,9 @@ class LinksController < ApplicationController
   end
 
   def open_graph
-    og = OpenGraph.new(params[:url])
-    render json: {
-      title: og.title,
-      description: og.description
-    }
+    response = GetOg.new(link: params[:url]).run
+
+    render json: response.to_h.to_json
   end
 
   private
@@ -66,6 +62,6 @@ class LinksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def link_params
-    params.fetch(:link, {}).permit(:title, :description, :link, :kind)
+    params.fetch(:link, {}).permit(:title, :description, :link)
   end
 end

@@ -22,10 +22,6 @@ class ApplicationController < ActionController::Base
     opengraph.image = 'https://resourc.tech/opengraph.png'
   end
 
-  def terms; end
-
-  def privacy; end
-
   private
 
   def extract_locale_from_accept_language_header
