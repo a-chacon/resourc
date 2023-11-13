@@ -67,10 +67,6 @@ group :development do
   # gem "spring"
 end
 
-gem 'capybara'
-gem 'selenium-webdriver'
-gem 'webdrivers'
-
 gem 'dockerfile-rails', '>= 1.5', group: :development
 
 gem 'omniauth'
@@ -109,3 +105,5 @@ gem 'sentry-ruby', '~> 5.12'
 gem 'sentry-rails', '~> 5.12'
 
 gem 'blurhash'
+
+gem 'http'
