@@ -107,3 +107,5 @@ gem 'sentry-rails', '~> 5.12'
 gem 'blurhash'
 
 gem 'http'
+
+gem 'whenever'

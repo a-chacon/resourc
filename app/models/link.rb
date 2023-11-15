@@ -1,6 +1,10 @@
 class Link < ApplicationRecord
   has_many :user_links
   has_many :users, through: :user_links
+
+  has_many :link_lists
+  has_many :lists, through: :link_lists
+
   has_and_belongs_to_many :tags
 
   has_one_attached :thumbnail
@@ -8,6 +12,8 @@ class Link < ApplicationRecord
   validates :title, presence: true
   validates :link, format: URI::DEFAULT_PARSER.make_regexp(%w[http https])
   validates :link, uniqueness: true
+
+  scope :oldest_10, -> { order(updated_at: :asc).limit(10) }
 
   enum :kind,
        %w[article video podcast course tool ebook documentation presentation template community event talk library
@@ -18,50 +24,6 @@ class Link < ApplicationRecord
 
   def owner
     user_links.find { |ul| ul.relationship_type == 'owner' }.try(:user)
-  end
-
-  def send_to_discord
-    bot = Discordrb::Bot.new token: Rails.application.credentials.dig(:discord, :token)
-
-    bot.ready do |event|
-      puts "Logged in as #{event.bot.profile.username}"
-
-      bot.servers.each do |server|
-        channel = server[1].channels.find { |c| c.name == '2048' }
-
-        if channel.nil?
-          Rails.logger.warn "Server #{server} don't have the 2048 channel. Try to create."
-          channel = server[1].create_channel('2048', 0)
-
-          channel.send("**¡Bienvenido a 2048 Dev!** :tada:
-
-Gracias por unirte a nosotros. Estamos emocionados de tenerte aquí. :computer:
-
-**¿Qué puedes hacer aquí?**
-- Compartir tus ideas y proyectos.
-- Colaborar con otros desarrolladores.
-- Aprender nuevas tecnologías y trucos.
-- Mantente al tanto de las últimas noticias del mundo de la programación.
-
-Si tienes alguna pregunta o necesitas ayuda, no dudes en preguntar en el canal correspondiente. ¡Esperamos que disfrutes de tu tiempo en el servidor y contribuyas al crecimiento de nuestra comunidad.
-
-¡Feliz codificación! :rocket:
-")
-        end
-
-        channel.send("## #{title}
-#{description}
-
-Compartido por: #{user.nickname}
-
-#{link}
-                     ")
-      end
-      bot.stop
-    end
-    bot.run
-  rescue Exception => e
-    Rails.logger.error e.to_s
   end
 
   def self.ransackable_attributes(_auth_object = nil)
