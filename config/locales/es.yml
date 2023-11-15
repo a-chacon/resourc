@@ -27,6 +27,7 @@ es:
       cancel: Cancelar
       save: Listo
       last_text: Desde aquí nos encargamos nosotros; el resto de los datos serán generados por inteligencia artificial. Tu recurso será publicado a la brevedad si todo está en orden.
+      list: ¿Quieres agregarlo a alguna de tus listas?
     create: 
       successfully: Compartido correctamente.
   users:
@@ -63,6 +64,8 @@ es:
       email: "Correo electrónico (opcional)"
       comment: "Comentario"
       submit_button: "Enviar"
+  lists:
+    index_title: "Tus Listas"
   activerecord:
     errors:
       models:
@@ -71,6 +74,11 @@ es:
             comment:
               blank: "no puede estar en blanco"
               invalid: "no es válido"
+        link:
+          attributes:
+            link:
+              taken: "ya está en uso"
+          taken: "en uso"
     attributes:
       link:
         kind:

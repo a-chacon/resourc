@@ -1,0 +1,14 @@
+<div id="<%= dom_id list %>">
+  <div class="flex flex-row justify-between items-center">
+    <p class="font-semibold text-xl">
+      <%= list.title %>
+    </p>
+
+    <div class="flex flex-row gap-2">
+      <% if action_name != "show" %>
+        <%= link_to "Show", list, class: "rounded-md bg-gradient-to-r from-lime-500 to-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:scale-110 transition ease-in-out delay-50 duration-200 my-4", "target": "_blank" %>
+        <%= link_to 'Edit', edit_list_path(list), class: "rounded-md bg-gradient-to-r from-pink-400 to-rose-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:scale-110 transition ease-in-out delay-50 duration-200 my-4" %>
+      <% end %>
+    </div>
+  </div>
+</div>

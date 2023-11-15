@@ -1,0 +1,10 @@
+<div class="mx-auto w-full md:w-4/5 lg:3/5 xl:w-2/5 border rounded-lg p-8 bg-slate-100 dark:bg-slate-800 dark:border-indigo-400">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl"><%= t("lists.index_title")%></h1>
+    <%= link_to 'New list', new_list_path, class: "rounded-md bg-gradient-to-r from-blue-800 to-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:scale-110 transition ease-in-out delay-50 duration-200 my-4" %>
+  </div>
+
+  <div id="lists" class="min-w-full pt-4">
+    <%= render @lists %>
+  </div>
+</div>

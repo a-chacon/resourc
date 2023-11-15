@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :user_links
   has_many :links, through: :user_links
 
+  has_many :user_lists
+  has_many :lists, through: :user_lists
+
   validates :email, uniqueness: true
 
   before_create :complete

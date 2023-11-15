@@ -1,0 +1,11 @@
+<div class="mx-auto w-full md:w-4/5 lg:3/5 xl:w-2/5 border rounded-lg p-8 bg-slate-100 dark:bg-slate-800 dark:border-indigo-400">
+  <h1 class="font-bold text-4xl">Editing list</h1>
+
+  <%= render "form", list: @list %>
+
+  <%= link_to "Show", @list, class: "rounded-md bg-gradient-to-r from-lime-500 to-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:scale-110 transition ease-in-out delay-50 duration-200 my-4", "target": "_blank" %>
+  <%= link_to "Back", lists_path, class: "rounded-md bg-gradient-to-r from-sky-800 to-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:scale-110 transition ease-in-out delay-50 duration-200 my-4" %>
+
+
+  <%= button_to "Remove", @list, :method => :delete, class: "rounded-md bg-gradient-to-r from-red-500 to-orange-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:scale-110 transition ease-in-out delay-50 duration-200 my-4" %>
+</div>

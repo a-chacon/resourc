@@ -29,6 +29,10 @@ SitemapGenerator::Sitemap.create do
      .group('tags.id')
      .order('link_count DESC')
      .limit(100).each do |tag|
-    add "/tags/#{tag.slug}"
+    add "/tags/#{tag.slug}", lastmod: tag.links.last.created_at
+  end
+
+  List.where(public: true).each do |l|
+    add list_path(l), lastmod: l.links.last.created_at
   end
 end

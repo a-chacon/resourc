@@ -20,7 +20,7 @@
           <div class="w-full p-2">
             <div class="flex flex-wrap gap-2 py-2">
               <span class="px-2 py-1 rounded-xl text-xs font-semibold bg-gradient-to-r from-pink-400 to-amber-500 text-white hover:scale-110 transition ease-in-out delay-50 duration-200"><%= t("activerecord.attributes.link.kind.#{l.kind}")  %></span>
-              <% l.tags[0..2].each do |t| %>
+              <% l.tags[0..4].each do |t| %>
                 <span class="px-2 py-1 rounded-xl text-xs bg-gradient-to-r from-blue-600 to-purple-700 text-white hover:scale-110 transition ease-in-out delay-50 duration-200"><%= link_to t.name, tag_path(t) %></span>
               <% end %>
             </div>

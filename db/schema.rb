@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_13_161048) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_15_120240) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,11 +39,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_161048) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "discord_channels", force: :cascade do |t|
+    t.string "server_id"
+    t.string "channel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "feedbacks", force: :cascade do |t|
     t.string "email"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "link_lists", force: :cascade do |t|
+    t.integer "link_id", null: false
+    t.integer "list_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_link_lists_on_link_id"
+    t.index ["list_id"], name: "index_link_lists_on_list_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -70,6 +86,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_161048) do
     t.index ["tag_id"], name: "index_links_tags_on_tag_id"
   end
 
+  create_table "list_discord_channels", force: :cascade do |t|
+    t.integer "list_id", null: false
+    t.integer "discord_channel_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discord_channel_id"], name: "index_list_discord_channels_on_discord_channel_id"
+    t.index ["list_id", "discord_channel_id"], name: "index_list_discord_channels_on_list_id_and_discord_channel_id", unique: true
+    t.index ["list_id"], name: "index_list_discord_channels_on_list_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.text "description"
+    t.boolean "public"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -89,6 +124,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_161048) do
     t.index ["user_id"], name: "index_user_links_on_user_id"
   end
 
+  create_table "user_lists", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "list_id", null: false
+    t.integer "relationship_type", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_user_lists_on_list_id"
+    t.index ["user_id"], name: "index_user_lists_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "nickname"
@@ -103,4 +148,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_161048) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "link_lists", "links"
+  add_foreign_key "link_lists", "lists"
+  add_foreign_key "list_discord_channels", "discord_channels"
+  add_foreign_key "list_discord_channels", "lists"
+  add_foreign_key "user_lists", "lists"
+  add_foreign_key "user_lists", "users"
 end

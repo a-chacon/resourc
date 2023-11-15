@@ -1,4 +1,5 @@
 class CompleteLinkDataJob < ApplicationJob
+  include SuckerPunch::Job
   queue_as :default
 
   def perform(link: Link)
@@ -9,5 +10,7 @@ class CompleteLinkDataJob < ApplicationJob
     LinkServices::TakeScreenshot.new(link:).run
 
     link.active!
+
+    LinkServices::ShareOnDiscordChannels.new(link:).run
   end
 end

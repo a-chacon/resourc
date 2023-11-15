@@ -12,8 +12,8 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
-    @pagy, @records = pagy(Link.joins(:user_links).where(user_links: { user_id: User.find(params[:id]).id,
-                                                                       relationship_type: :owner }).order(id: :desc))
+    @pagy, @records = pagy(Link.joins(:user_links).active.where(user_links: { user_id: User.find(params[:id]).id,
+                                                                              relationship_type: :owner }).order(id: :desc))
 
     return unless @current_user
 
