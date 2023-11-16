@@ -11,12 +11,6 @@ class TagsController < ApplicationController
   end
 
   def show
-    @popular_tags = Tag.select('tags.*, COUNT(links_tags.link_id) AS link_count')
-                       .joins(:links)
-                       .group('tags.id')
-                       .order('link_count DESC')
-                       .limit(20)
-
     params[:q] = {} if params[:q].nil?
 
     @q = Link.ransack(params[:q].merge({ tags_name_eq: @tag.name }))
@@ -30,10 +24,11 @@ class TagsController < ApplicationController
     @page_title = t('tags.show.title', total: @pagy.count, tag: @tag.name)
     @page_description = t('meta_description')
 
-    return unless @current_user
+    return render layout: 'layouts/main' unless @current_user
 
     @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
                                                                                    dislike]).where(link_id: @records.pluck(:id))
+    render layout: 'layouts/main'
   end
 
   private

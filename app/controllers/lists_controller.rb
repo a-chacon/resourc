@@ -12,12 +12,17 @@ class ListsController < ApplicationController
 
   # GET /lists/1 or /lists/1.json
   def show
-    @pagy, @records = pagy(Link.joins(:link_lists).active.where(link_lists: { list_id: @list.id }))
+    @q = Link.ransack(params[:q])
+    @q.sorts = ['created_at desc', 'reaction_like desc'] if @q.sorts.empty?
 
-    return unless @current_user
+    @pagy, @records = pagy(@q.result(distinct: true).joins(:link_lists).active.where(link_lists: { list_id: @list.id }))
+
+    return render layout: 'layouts/main' unless @current_user
 
     @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
                                                                                    dislike]).where(link_id: @records.pluck(:id))
+
+    render layout: 'layouts/main'
   end
 
   # GET /lists/new

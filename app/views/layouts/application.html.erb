@@ -17,9 +17,11 @@
 
   <body class="container mx-auto bg-slate-150 text-slate-800 dark:bg-slate-950 dark:text-slate-200 scroll-smooth" data-controller="modal">
     <%= render "application/navbar" %>
+
     <main class="mt-12 md:mt-16 px-5 flex flex-col min-h-screen">
       <%= yield %>
     </main>
+
     <%= render "application/flashs"%>
 
     <%= render "application/footer" %>

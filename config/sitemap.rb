@@ -33,6 +33,6 @@ SitemapGenerator::Sitemap.create do
   end
 
   List.where(public: true).each do |l|
-    add list_path(l), lastmod: l.links.last.created_at
+    add "/lists/#{l.slug}", lastmod: l.links.last.created_at
   end
 end
