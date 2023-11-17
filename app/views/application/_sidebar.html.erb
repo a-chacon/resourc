@@ -11,17 +11,28 @@
       </button>
     <% end %>
 
-    <div class="py-4 flex flex-col gap-4">
-      <h1 class="text-slate-800 dark:text-slate-100 text-2xl font-semibold text-center">
+    <div class="flex flex-col gap-4">
+      <h1 class="text-slate-800 dark:text-slate-100 text-2xl font-semibold text-left">
         <%= t 'title' %>
       </h1>
 
-      <h2 class="mx-auto text-center"><%= t 'description' %></h2>
+      <h2 class="mx-auto text-left"><%= t 'description' %></h2>
+    </div>
+
+    <div class="py-4 flex flex-col gap-4" >
+      <h2 class="text-left text-xl font-semibold">Share</h2>
+      <%= form_with url: new_link_path, method: :get, class:"flex flex-col gap-4 ", "data-controller":"validate-url"  do |form| %>
+        <%= form.text_field :link, placeholder: "https://resourc.tech", class:"dark:bg-slate-900 w-full rounded-xl focus:border-indigo-600 focus:ring-0" , "data-validate-url-target": "urlInput" %>
+        <%= form.submit t("share_title") ,class:"text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200", "data-action": "validate-url#validateUrl" %>
+      <% end %>
+      <div data-validate-url-target="warning" class="text-red-500 m-2" style="display: none;">
+        <%= t("invalid_url") %> 
+      </div>
     </div>
 
     <div class="py-4 flex flex-col gap-4">
-      <h2 class="text-xl text-center font-semibold">Popular Tags</h2>
-      <div class="flex flex-wrap gap-3 place-content-center">
+      <h2 class="text-xl text-left font-semibold">Popular Tags</h2>
+      <div class="flex flex-wrap gap-3 place-content-left">
         <% Tag.select('tags.*, COUNT(links_tags.link_id) AS link_count')
                        .joins(:links)
                        .group('tags.id')
@@ -34,7 +45,7 @@
 
     
     <div class="py-4 flex flex-col gap-4">
-      <h2 class="text-xl p-3 text-center font-semibold">Popular Lists</h2>
+      <h2 class="text-xl text-left font-semibold">Popular Lists</h2>
       <ul class="list-disc list-inside">
         <% List.all.limit(10).each do |l| %>
           <li class="font-semibold "><a href="<%= list_url(l) %>"><%= l.title %></a></li>
@@ -42,13 +53,3 @@
       </ul>
     </div>
 
-    <div class="py-4 flex flex-col gap-4" >
-      <h2 class="text-center text-xl font-semibold">Share</h2>
-      <%= form_with url: new_link_path, method: :get, class:"flex flex-col gap-4 ", "data-controller":"validate-url"  do |form| %>
-        <%= form.text_field :link, placeholder: "https://resourc.tech", class:"dark:bg-slate-900 w-full rounded-xl focus:border-indigo-600 focus:ring-0" , "data-validate-url-target": "urlInput" %>
-        <%= form.submit t("share_title") ,class:"text-white bg-gradient-to-r from-rose-600 to-purple-700 text-center rounded-lg px-5 py-2 font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200", "data-action": "validate-url#validateUrl" %>
-      <% end %>
-      <div data-validate-url-target="warning" class="text-red-500 m-2" style="display: none;">
-        <%= t("invalid_url") %> 
-      </div>
-    </div>

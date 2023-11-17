@@ -5,8 +5,7 @@
       <%= sort_link(@q, :created_at, 'Creado', default_order: :desc) %>
     </div>
   <% end %>
-  <div class="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-
+  <div class="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
     <% @records.each do |l| %>
       <div class="mb-8 bg-slate-100 dark:bg-slate-900 p-2 rounded-xl relative shadow shadow-indigo-500/50">
         <div class="flex-row gap-2 flex-col">
@@ -27,9 +26,7 @@
 
             <div class="flex flex-col">
               <a href="<%= l.link %>" target="_blank">
-                <span class="text-sm text-slate-800/80 dark:text-slate-400 line-clamp-1"><%= l.link %></span>
-                <h3 class="font-semibold text-xl py-1 hover:underline line-clamp-1"><%= l.title %></h3>
-                <p class="line-clamp-4 md:line-clamp-3 text-sm md:text-md"><%= l.description %></p>
+                <h3 class="font-semibold text-xl py-1 hover:underline line-clamp-2"><%= l.title %></h3>
               </a>
             </div>
 
