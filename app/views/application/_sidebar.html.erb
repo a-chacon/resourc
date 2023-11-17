@@ -38,7 +38,7 @@
                        .group('tags.id')
                        .order('link_count DESC')
                        .limit(15).each do |t| %>
-          <%= link_to t.name , tag_path(t),rel:'nofollow', class: "px-2 py-1 rounded-xl text-sm bg-gradient-to-r from-blue-600 to-purple-700 text-white font-semibold hover:scale-110 transition ease-in-out delay-50 duration-200" %>
+          <%= link_to "#" + t.name , tag_path(t),rel:'nofollow', class: "rounded-xl dark:text-slate-200 text-slate-600 hover:underline" %>
         <% end %>
       </div>
     </div>
