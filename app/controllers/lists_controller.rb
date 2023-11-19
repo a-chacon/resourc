@@ -17,12 +17,12 @@ class ListsController < ApplicationController
 
     @pagy, @records = pagy(@q.result(distinct: true).joins(:link_lists).active.where(link_lists: { list_id: @list.id }))
 
-    return render layout: 'layouts/main' unless @current_user
+    return render layout: 'layouts/main_links' unless @current_user
 
     @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
                                                                                    dislike]).where(link_id: @records.pluck(:id))
 
-    render layout: 'layouts/main'
+    render layout: 'layouts/main_links'
   end
 
   # GET /lists/new

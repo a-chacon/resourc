@@ -24,11 +24,11 @@ class TagsController < ApplicationController
     @page_title = t('tags.show.title', total: @pagy.count, tag: @tag.name)
     @page_description = t('meta_description')
 
-    return render layout: 'layouts/main' unless @current_user
+    return render layout: 'layouts/main_links' unless @current_user
 
     @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
                                                                                    dislike]).where(link_id: @records.pluck(:id))
-    render layout: 'layouts/main'
+    render layout: 'layouts/main_links'
   end
 
   private

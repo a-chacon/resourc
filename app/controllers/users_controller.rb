@@ -15,10 +15,11 @@ class UsersController < ApplicationController
     @pagy, @records = pagy(Link.joins(:user_links).active.where(user_links: { user_id: User.find(params[:id]).id,
                                                                               relationship_type: :owner }).order(id: :desc))
 
-    return unless @current_user
+    return render layout: 'layouts/main_links' unless @current_user
 
     @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
                                                                                    dislike]).where(link_id: @records.pluck(:id))
+    render layout: 'layouts/main_links'
   end
 
   # GET /users/new

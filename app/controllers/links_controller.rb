@@ -9,17 +9,14 @@ class LinksController < ApplicationController
     @page_title = t('meta_title')
     @page_description = t('meta_description')
 
-    @q = Link.ransack(params[:q])
-    @q.sorts = ['created_at desc', 'reaction_like desc'] if @q.sorts.empty?
-
     @pagy, @records = pagy(@q.result(distinct: true).active.with_attached_thumbnail.includes(:tags,
                                                                                              user_links: { user: { avatar_attachment: :blob } }))
 
-    return render layout: 'layouts/main' unless @current_user
+    return render layout: 'layouts/main_links' unless @current_user
 
     @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
                                                                                    dislike]).where(link_id: @records.pluck(:id))
-    render layout: 'layouts/main'
+    render layout: 'layouts/main_links'
   end
 
   # GET /links/new
