@@ -13,9 +13,9 @@ export default class extends Controller {
 
   connect() {
     if (this.likeValue !== "") {
-      this.buttonUpTarget.classList.add('text-red-500')
+      this.buttonUpTarget.classList.add('text-rose-500')
     } else if (this.dislikeValue !== "") {
-      this.buttonDownTarget.classList.add("text-red-500")
+      this.buttonDownTarget.classList.add("text-rose-500")
     }
   }
 
@@ -71,7 +71,7 @@ export default class extends Controller {
           this.countTarget.innerHTML = data.link.reaction_like
           this.likeValue = data.user_link.id
           this.dislikeValue = ""
-          this.buttonDownTarget.classList.remove("text-red-500")
+          this.buttonDownTarget.classList.remove("text-rose-500")
         })
         .catch(error => {
           // Handle errors
@@ -80,7 +80,7 @@ export default class extends Controller {
 
     }
     
-    this.buttonUpTarget.classList.toggle('text-red-500')
+    this.buttonUpTarget.classList.toggle('text-rose-500')
   }
 
   voteDown(){
@@ -133,7 +133,7 @@ export default class extends Controller {
           console.log(data);
 
           this.countTarget.innerHTML = data.link.reaction_like
-          this.buttonUpTarget.classList.remove("text-red-500")
+          this.buttonUpTarget.classList.remove("text-rose-500")
           this.likeValue = ""
           this.dislikeValue = data.user_link.id
         })
@@ -142,7 +142,7 @@ export default class extends Controller {
           console.error('Fetch error:', error);
         });
     }
-    this.buttonDownTarget.classList.toggle('text-red-500')
+    this.buttonDownTarget.classList.toggle('text-rose-500')
   }
 
 

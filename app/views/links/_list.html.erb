@@ -1,9 +1,11 @@
 <div class="flex flex-col relative">
   <% if @q %>
+    <!--
     <div class="flex flex-row justify-end gap-2 m-2 absolute right-0 -top-10">
       <%= sort_link(@q, :reaction_like, 'Voted', default_order: :desc) %>
       <%= sort_link(@q, :created_at, 'Creado', default_order: :desc) %>
     </div>
+    -->
   <% end %>
   <div class="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
     <% @records.each do |l| %>
