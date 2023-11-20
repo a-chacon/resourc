@@ -9,7 +9,7 @@
   <% end %>
   <div class="grid gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
     <% @records.each do |l| %>
-      <div class="bg-slate-100 dark:bg-slate-900 p-2 rounded-xl relative md:h-56">
+      <div class="bg-slate-100 dark:bg-slate-900 p-2 rounded-xl relative md:h-64">
         <div class="flex-row gap-2 flex-col">
 
           <% if l.thumbnail.attached? %>
@@ -49,12 +49,15 @@
               </a>
             </div>
 
-            <div class="flex flex-wrap gap-2 py-2">
-              <% l.tags[0..2].each do |t| %>
-                <span class="rounded-xl dark:text-slate-200 text-slate-600 text-sm ">#<%= link_to t.name, tag_path(t) %></span>
-              <% end %>
+            <div class="line-clamp-2 text-sm fnt-semibold">
+              <%= l.description %>
             </div>
 
+            <div class="flex flex-wrap gap-2 py-2">
+              <% l.tags[0..2].each do |t| %>
+                <span class="rounded-xl dark:text-slate-400 text-slate-600 text-sm ">#<%= link_to t.name, tag_path(t) %></span>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
