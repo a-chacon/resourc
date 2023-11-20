@@ -46,13 +46,21 @@
 <% end %>
 
 <div class="flex flex-col gap-4">
-  <h1 class="text-slate-800 dark:text-slate-100 text-2xl font-semibold text-center md:text-left">
+  <h1 class="text-slate-800 dark:text-slate-100 underline decoration-rose-500 decoration-2 text-2xl font-semibold text-center md:text-left">
     <%= t 'title' %>
   </h1>
 
-  <h2 class="mx-auto text-center md:text-left"><%= t 'description' %></h2>
+  <p class="dark:text-slate-400 mx-auto text-center md:text-left font-semibold"><%= t 'description' %></p>
 </div>
 
+<div class="py-4 flex flex-col gap-4">
+  <h2 class="text-xl text-center md:text-left font-semibold">Popular Lists</h2>
+  <ul class="list-disc list-inside">
+    <% List.order("created_at desc").last(10).each do |l| %>
+      <li class="font-semibold my-2"><a href="<%= list_url(l) %>"><%= l.title %></a></li>
+    <% end %>
+  </ul>
+</div>
 
 <div class="py-4 flex flex-col gap-4">
   <h2 class="text-xl text-center md:text-left font-semibold">Popular Tags</h2>
@@ -62,18 +70,10 @@
                    .group('tags.id')
                    .order('link_count DESC')
                    .limit(15).each do |t| %>
-      <%= link_to "#" + t.name , tag_path(t),rel:'nofollow', class: "rounded-xl dark:text-slate-200 text-slate-600 hover:underline" %>
+      <%= link_to "#" + t.name , tag_path(t),rel:'nofollow', class: "rounded-xl dark:text-slate-400 text-slate-600 hover:underline" %>
     <% end %>
   </div>
 </div>
 
 
-<div class="py-4 flex flex-col gap-4">
-  <h2 class="text-xl text-center md:text-left font-semibold">Popular Lists</h2>
-  <ul class="list-disc list-inside">
-    <% List.all.limit(10).each do |l| %>
-      <li class="font-semibold "><a href="<%= list_url(l) %>"><%= l.title %></a></li>
-    <% end %>
-  </ul>
-</div>
 

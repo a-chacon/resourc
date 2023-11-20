@@ -354,6 +354,7 @@ DEPENDENCIES
   jbuilder
   meta-tags
   mini_magick
+  nokogiri
   omniauth
   omniauth-github (~> 2.0.0)
   omniauth-gitlab

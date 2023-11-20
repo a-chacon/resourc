@@ -109,3 +109,5 @@ gem 'blurhash'
 gem 'http'
 
 gem 'whenever'
+
+gem 'nokogiri'

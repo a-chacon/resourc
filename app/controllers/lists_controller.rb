@@ -12,6 +12,9 @@ class ListsController < ApplicationController
 
   # GET /lists/1 or /lists/1.json
   def show
+    @page_title = @list.title
+    @page_description = @list.description
+
     @q = Link.ransack(params[:q])
     @q.sorts = ['created_at desc', 'reaction_like desc'] if @q.sorts.empty?
 

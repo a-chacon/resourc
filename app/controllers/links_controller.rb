@@ -2,7 +2,16 @@ class LinksController < ApplicationController
   include AuthorizationConcern
 
   before_action :authorize!, only: %i[create new]
-  before_action :authorize, only: [:index]
+  before_action :authorize, only: %i[index show]
+  before_action :set_link, only: [:show]
+
+  def show
+    return render layout: 'layouts/main' unless @current_user
+
+    @current_user_reactions = @current_user.user_links.where(relationship_type: %i[like
+                                                                                   dislike]).where(link_id: @link.id)
+    render layout: 'layouts/main'
+  end
 
   # GET /links or /links.json
   def index

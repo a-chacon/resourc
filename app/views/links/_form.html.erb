@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="hidden">
       <%= form.label :title,(t 'links.form.title'), class:"font-semibold m-2" %>
       <%= form.text_field :title, class:"dark:bg-slate-800 w-full rounded-xl focus:border-indigo-600 focus:ring-0" , "data-extract-og-data-target": "title"%>
 
@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="hidden">
       <%= form.label :description,(t 'links.form.description'), class:"font-semibold m-2" %>
       <%= form.text_area :description, class:"dark:bg-slate-800 w-full rounded-xl focus:border-indigo-600 focus:ring-0" , "data-extract-og-data-target": "description"%>
 

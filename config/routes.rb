@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get 'sessions/sign_out', to: 'sessions#destroy'
 
     resources :tags, only: ['show']
-    resources :links, only: %i[index new create]
+    resources :links, only: %i[index new create show]
     resources :user_links, only: %i[create destroy]
 
     get 'terms', to: 'pages#terms'
