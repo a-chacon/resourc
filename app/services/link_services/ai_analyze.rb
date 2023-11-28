@@ -20,8 +20,15 @@ module LinkServices
 
     def gpt_analyzer
       object = { title: @link.title, description: @link.description, url: @link.link }
-      client = OpenAI::Client.new(access_token: Rails.application.credentials.dig(:openai, :api_key),
-                                  organization_id: 'org-YeF1PAndkOGQdOpe38OlpQgo', request_timeout: 120)
+      begin
+        client = OpenAI::Client.new(access_token: Rails.application.credentials.dig(:openai, :api_key),
+                                    organization_id: 'org-YeF1PAndkOGQdOpe38OlpQgo', request_timeout: 120)
+      rescue Exception => e
+        Rails.logger.debug(e.to_s)
+
+        client = OpenAI::Client.new(access_token: Rails.application.credentials.dig(:openai, :api_key),
+                                    organization_id: 'org-YeF1PAndkOGQdOpe38OlpQgo', request_timeout: 120)
+      end
 
       response = client.chat(
         parameters: {
